@@ -1,0 +1,8 @@
+# Presentación interna — no subir al repositorio
+*.pdf
+
+# Entorno virtual de Python
+.venv/
+
+# Archivos temporales
+*.txt
