@@ -123,6 +123,76 @@ O usa Find & Replace (Ctrl+H):
 
 ---
 
+### SECCIÓN 1B: GALERÍA / CARRUSEL (imágenes del producto y operación)
+
+**Ubicación:** Entre la sección `#hero` y la sección `#mercado`
+
+**ID de sección:** `#galeria`
+
+---
+
+#### Cómo reemplazar una imagen placeholder
+
+Cada slide tiene una imagen con `src="https://placehold.co/..."`. Para reemplazar por una foto real:
+
+1. Guarda tu foto en la **misma carpeta** que `index.html`
+2. Busca el comentario del slide que quieres cambiar (ej. `SLIDE 1`)
+3. Reemplaza el `src`:
+
+```html
+<!-- ANTES (placeholder) -->
+<img src="https://placehold.co/1200x600/1A1A1A/F9B233?text=Foto+1+—+Produto+Principal" ...>
+
+<!-- DESPUÉS (foto real) -->
+<img src="foto-hotdog-principal.jpg" ...>
+```
+
+**Tamaño recomendado:** 1200×600px (horizontal). Formatos: JPG, PNG, WEBP.
+
+---
+
+#### Imágenes sugeridas por slide
+
+| Slide | Archivo sugerido | Contenido ideal |
+|-------|-----------------|-----------------|
+| Slide 1 | `foto-produto.jpg` | Hot dog estrella / producto principal |
+| Slide 2 | `foto-ponto-venda.jpg` | Área de trabajo / punto de venta |
+| Slide 3 | `foto-atendimento.jpg` | Atención al cliente / ambiente |
+| Slide 4 | `foto-equipe.jpg` | Equipo / operación interna |
+
+---
+
+#### Cambiar el texto del pie de cada slide
+
+Cada slide tiene un bloque con título y descripción:
+
+```html
+<p class="text-white font-bold text-lg">Nosso Produto Estrela</p>       <!-- título -->
+<p class="text-gray-300 text-sm">Hot dog gourmet com molhos exclusivos</p> <!-- subtítulo -->
+```
+
+Edita esos dos textos para cada slide.
+
+---
+
+#### Agregar o quitar slides
+
+**Para agregar:** Copia un bloque `<div class="carousel-slide">` completo y pégalo antes del cierre `</div><!-- fin carousel-track -->`. El JS detecta los slides y los puntos automáticamente.
+
+**Para quitar:** Elimina el bloque `<div class="carousel-slide">` completo del slide que no quieras.
+
+---
+
+#### Cambiar el tiempo de autoplay
+
+Por defecto el carrusel avanza cada **4 segundos**. Para cambiarlo, busca en el bloque `<script>`:
+
+```js
+autoplayTimer = setInterval(() => goTo(current + 1), 4000); // ← cambia 4000 (ms)
+```
+
+---
+
 ### SECCIÓN 2: DIFERENCIALES (3 cards con ventajas)
 
 **Ubicación:** Líneas ~300-390

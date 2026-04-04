@@ -357,6 +357,138 @@
     </section>
 
     <!-- ========================================
+         SEÇÃO GALERIA / CARRUSEL
+         Muestra imágenes reales del producto y área de trabajo
+
+         CÓMO REEMPLAZAR LAS IMÁGENES:
+         Cada slide tiene un atributo src con una imagen placeholder.
+         Para reemplazar:
+           1. Guarda tu foto en la misma carpeta que index.html
+           2. Busca la línea: src="https://placehold.co/..."
+           3. Reemplázala por: src="nombre-de-tu-foto.jpg"
+
+         IMÁGENES RECOMENDADAS (800x500px mínimo):
+           - Slide 1: foto del hot dog estrella / producto principal
+           - Slide 2: foto del área de trabajo / punto de venta
+           - Slide 3: foto de cliente / ambiente de atención
+           - Slide 4: foto del equipo / operación interna
+
+         AGREGAR MÁS SLIDES:
+           Copia un bloque <div class="carousel-slide"> completo
+           y pégalo antes del cierre </div> del carousel-track.
+           El JS detecta los slides automáticamente.
+         ======================================== -->
+    <section id="galeria" class="py-16 sm:py-20 bg-dark">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                    Nossa <span class="text-primary">Operação</span> em Imagens
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Conheça o produto, o ambiente e a experiência Smart Dog
+                </p>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+            </div>
+
+            <!-- CONTENEDOR DEL CARRUSEL -->
+            <div class="relative overflow-hidden rounded-2xl" id="carousel-container">
+
+                <!-- TRACK: contiene todos los slides -->
+                <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
+
+                    <!-- ===== SLIDE 1 =====
+                         REEMPLAZAR: cambia src por tu foto del producto
+                         Ejemplo: src="foto-hotdog-principal.jpg"
+                         Tamaño recomendado: 1200x600px
+                    ===== -->
+                    <div class="carousel-slide min-w-full relative">
+                        <img
+                            src="https://placehold.co/1200x600/1A1A1A/F9B233?text=Foto+1+—+Produto+Principal"
+                            alt="Produto principal Smart Dog"
+                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
+                        >
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                            <p class="text-white font-bold text-lg">Nosso Produto Estrela</p>
+                            <p class="text-gray-300 text-sm">Hot dog gourmet com molhos exclusivos</p>
+                        </div>
+                    </div>
+
+                    <!-- ===== SLIDE 2 =====
+                         REEMPLAZAR: cambia src por foto del punto de venta
+                         Ejemplo: src="foto-ponto-de-venda.jpg"
+                    ===== -->
+                    <div class="carousel-slide min-w-full relative">
+                        <img
+                            src="https://placehold.co/1200x600/1A1A1A/E33E1B?text=Foto+2+—+Ponto+de+Venda"
+                            alt="Ponto de venda Smart Dog"
+                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
+                        >
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                            <p class="text-white font-bold text-lg">Ponto de Venda</p>
+                            <p class="text-gray-300 text-sm">Estrutura funcional e atrativa</p>
+                        </div>
+                    </div>
+
+                    <!-- ===== SLIDE 3 =====
+                         REEMPLAZAR: cambia src por foto de atención al cliente
+                         Ejemplo: src="foto-atendimento.jpg"
+                    ===== -->
+                    <div class="carousel-slide min-w-full relative">
+                        <img
+                            src="https://placehold.co/1200x600/1A1A1A/F9B233?text=Foto+3+—+Atendimento"
+                            alt="Atendimento Smart Dog"
+                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
+                        >
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                            <p class="text-white font-bold text-lg">Experiência do Cliente</p>
+                            <p class="text-gray-300 text-sm">Atendimento rápido e de qualidade</p>
+                        </div>
+                    </div>
+
+                    <!-- ===== SLIDE 4 =====
+                         REEMPLAZAR: cambia src por foto del equipo/operación
+                         Ejemplo: src="foto-equipe.jpg"
+                    ===== -->
+                    <div class="carousel-slide min-w-full relative">
+                        <img
+                            src="https://placehold.co/1200x600/1A1A1A/E33E1B?text=Foto+4+—+Equipe+e+Operação"
+                            alt="Equipe Smart Dog"
+                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
+                        >
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                            <p class="text-white font-bold text-lg">Nossa Equipe</p>
+                            <p class="text-gray-300 text-sm">Treinamento e padronização em cada unidade</p>
+                        </div>
+                    </div>
+
+                </div><!-- fin carousel-track -->
+
+                <!-- BOTÓN ANTERIOR -->
+                <button
+                    id="carousel-prev"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 hover:bg-primary hover:text-dark text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg font-bold"
+                    aria-label="Anterior"
+                >‹</button>
+
+                <!-- BOTÓN SIGUIENTE -->
+                <button
+                    id="carousel-next"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 hover:bg-primary hover:text-dark text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg font-bold"
+                    aria-label="Siguiente"
+                >›</button>
+
+            </div><!-- fin carousel-container -->
+
+            <!-- PUNTOS INDICADORES -->
+            <div class="flex justify-center gap-3 mt-6" id="carousel-dots">
+                <!-- Los puntos se generan automáticamente por JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================
          SEÇÃO MERCADO
          Dados do mercado brasileiro de hot dogs
          ======================================== -->
@@ -1312,7 +1444,46 @@
         });
 
         // ========================================
-        // 5. NAVBAR STICKY CON EFECTO
+        // 5. CARRUSEL DE GALERÍA
+        // ========================================
+        const track = document.getElementById('carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        let current = 0;
+        let autoplayTimer;
+
+        // Generar puntos indicadores
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'w-3 h-3 rounded-full transition ' + (i === 0 ? 'bg-primary' : 'bg-gray-600');
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function goTo(index) {
+            current = (index + slides.length) % slides.length;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dotsContainer.querySelectorAll('button').forEach((d, i) => {
+                d.className = 'w-3 h-3 rounded-full transition ' + (i === current ? 'bg-primary' : 'bg-gray-600');
+            });
+        }
+
+        prevBtn.addEventListener('click', () => { goTo(current - 1); resetAutoplay(); });
+        nextBtn.addEventListener('click', () => { goTo(current + 1); resetAutoplay(); });
+
+        function startAutoplay() {
+            autoplayTimer = setInterval(() => goTo(current + 1), 4000);
+        }
+        function resetAutoplay() {
+            clearInterval(autoplayTimer);
+            startAutoplay();
+        }
+        startAutoplay();
+
+        // ========================================
+        // 7. NAVBAR STICKY CON EFECTO
         // ========================================
         const navbar = document.querySelector('nav');
         window.addEventListener('scroll', () => {
