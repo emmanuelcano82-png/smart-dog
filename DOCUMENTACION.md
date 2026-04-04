@@ -464,3 +464,29 @@ Copia una sección existente y modifica:
 **Última actualización:** 4 de abril, 2025  
 **Versión:** 1.0  
 **Soporte:** Consulta los comentarios del HTML para más detalles específicos
+
+---
+
+## Missão, Visão e Valores (Placeholder comentado no HTML)
+
+Esta seção existe no `index.html` como um bloco comentado entre as seções "Diferenciais" e "Inversiones". Para ativá-la, remova os delimitadores `<!--` e `-->` ao redor do bloco `<section id="missao-visao-valores">`.
+
+### Conteúdo extraído do PDF da franquia
+
+**Missão**
+> Oferecer alimentos de qualidade com rapidez e cuidado, criando uma experiência acessível ao consumidor e oportunidades sustentáveis para empreendedores.
+
+**Visão**
+> Ser referência nacional em franquias de hot dogs, reconhecida pela simplicidade do modelo, excelência operacional e forte conexão com o consumidor.
+
+**Valores**
+- Compromisso com a qualidade
+- Respeito (franqueados, clientes, fornecedores, equipe)
+- Clareza e transparência
+- Simplicidade e eficiência
+- Espírito colaborativo
+- Resiliência
+
+### Como ativar a seção
+
+Busca no `index.html` o comentário `SEÇÃO MISSÃO / VISÃO / VALORES` e remove os dois delimitadores de comentário HTML (`<!--` e `-->`) que envolvem o bloco `<section>`.
