@@ -1,587 +1,474 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- ========================================
-         META TAGS & CONFIGURACIÓN BASE
-         - Charset UTF-8 para caracteres speciales portugués
-         - Viewport para responsive mobile-first
-         - SEO básico
-         ======================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Smart Dog - Invista em um clássico popular com o toque Smart. Modelo de negócio pronto para lançamento com operações estruturadas e receitas gourmet.">
-    <meta name="theme-color" content="#F9B233">
-    <title>Smart Dog - Franquias de Hot Dogs Gourmet</title>
+    <meta name="description" content="Smart Dog - Invista em um clássico popular com o toque Smart. Modelo de negócio pronto para lançamento com operações estruturadas e receitas gourmet exclusivas.">
+    <meta name="theme-color" content="#ffb400">
+    <title>Smart Dog - Franquia de Hot Dogs Gourmet</title>
 
-    <!-- FAVICON
-         Para editar: Reemplaza "favicon.png" con la URL de tu favicon (32x32)
-         ¡IMPORTANTE! Guarda el archivo favicon.png en la misma carpeta que Index.html
-    -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="Smart Dog - Franquia de Hot Dogs Gourmet">
+    <meta property="og:description" content="Seja um franqueado Smart Dog. Modelo de negócio pronto, operação estruturada e alto potencial de retorno.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmanuelcano82-png.github.io/smart-dog/">
+    <meta property="og:image" content="https://emmanuelcano82-png.github.io/smart-dog/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
     <link rel="apple-touch-icon" href="favicon.png">
 
-    <!-- TAILWIND CSS CDN
-         Proporciona todos los estilos responsive y utilitarios
-         No requiere compilación, es listo para producción
-    -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- GOOGLE FONTS: Poppins (moderna, amigable)
-         Usada para títulos y cuerpo de texto
-    -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- ICONOS: Feather Icons (via CDN)
-         Pequeños iconos SVG para las secciones
-    -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.css" rel="stylesheet">
-
-    <!-- CUSTOM ANIMATIONS & VARIABLES
-         Define animaciones personalizadas y paleta de colores
-         Sobrescribe defaults de Tailwind si es necesario
-    -->
     <style>
         :root {
-            --color-primary: #F9B233;
-            --color-accent: #E33E1B;
-            --color-dark: #1A1A1A;
-            --color-light: #F5F5F5;
+            --color-primary: #ffb400;
+            --color-accent:  #d32c06;
+            --color-dark:    #111111;
         }
 
-        * {
-            font-family: 'Poppins', sans-serif;
+        * { font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        /* Hero — anima ao carregar */
+        @keyframes heroUp   { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes heroLeft { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:translateX(0); } }
+        @keyframes heroRight{ from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+        @keyframes pulseGlow{
+            0%,100% { box-shadow: 0 0 0 0 rgba(255,180,0,.6); }
+            50%      { box-shadow: 0 0 0 14px rgba(255,180,0,0); }
         }
+        .hero-up    { animation: heroUp    .9s ease-out both; }
+        .hero-left  { animation: heroLeft  .9s ease-out both; }
+        .hero-right { animation: heroRight .9s ease-out both; }
+        .h-d1 { animation-delay:.10s; }
+        .h-d2 { animation-delay:.25s; }
+        .h-d3 { animation-delay:.40s; }
+        .h-d4 { animation-delay:.55s; }
+        .h-d5 { animation-delay:.70s; }
+        .pulse-glow { animation: pulseGlow 2s infinite; }
 
-        /* ANIMACIÓN: Fade In al hacer scroll
-           Elementos con esta clase aparecen gradualmente
-        */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Scroll-reveal — ativado pelo JS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .7s ease-out, transform .7s ease-out;
         }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        .rd1 { transition-delay:.10s; }
+        .rd2 { transition-delay:.20s; }
+        .rd3 { transition-delay:.30s; }
+        .rd4 { transition-delay:.40s; }
+        .rd5 { transition-delay:.50s; }
+        .rd6 { transition-delay:.60s; }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+        /* Cores da marca */
+        .text-primary  { color: #ffb400; }
+        .bg-primary    { background-color: #ffb400; }
+        .text-accent   { color: #d32c06; }
+        .bg-accent     { background-color: #d32c06; }
+        .bg-dark       { background-color: #111111; }
+        .text-dark     { color: #111111; }
+        .border-primary{ border-color: #ffb400; }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(249, 178, 51, 0.7);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(249, 178, 51, 0);
-            }
-        }
-
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-slideInLeft {
-            animation: slideInLeft 0.8s ease-out forwards;
-        }
-
-        .animate-slideInRight {
-            animation: slideInRight 0.8s ease-out forwards;
-        }
-
-        .animate-pulse-glow {
-            animation: pulse-glow 2s infinite;
-        }
-
-        /* Delay para animaciones escalonadas */
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-
-        /* HOVER EFFECTS: Botones y cards */
+        /* Botões */
         .btn-primary {
-            background-color: #E33E1B;
-            transition: all 0.3s ease;
+            background-color: #d32c06;
+            transition: background-color .3s, transform .3s, box-shadow .3s;
         }
-
         .btn-primary:hover {
-            background-color: #c1240a;
+            background-color: #b52505;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(227, 62, 27, 0.3);
+            box-shadow: 0 10px 25px rgba(211,44,6,.4);
         }
-
-        .card-hover {
-            transition: all 0.3s ease;
+        .btn-outline {
+            border: 2px solid #ffb400;
+            color: #ffb400;
+            transition: all .3s;
         }
+        .btn-outline:hover { background-color:#ffb400; color:#111111; }
 
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
+        /* Cards */
+        .card-hover { transition: transform .3s, box-shadow .3s; }
+        .card-hover:hover { transform:translateY(-8px); box-shadow:0 20px 40px rgba(0,0,0,.4); }
 
-        /* ESTILOS PERSONALIZADOS */
-        .text-primary {
-            color: #F9B233;
-        }
+        /* Divisor */
+        .divider { height:1px; background:linear-gradient(90deg,transparent,#ffb400,transparent); }
 
-        .bg-primary {
-            background-color: #F9B233;
-        }
+        /* Gradiente hero */
+        .gradient-hero { background:linear-gradient(135deg,#111111 0%,#1e1e1e 100%); }
 
-        .text-accent {
-            color: #E33E1B;
-        }
-
-        .bg-accent {
-            background-color: #E33E1B;
-        }
-
-        .bg-dark {
-            background-color: #1A1A1A;
-        }
-
-        .text-dark {
-            color: #1A1A1A;
-        }
-
-        /* Gradiente atractivo para hero */
-        .gradient-hero {
-            background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
-        }
-
-        /* Línea separadora elegante */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #F9B233, transparent);
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Respuesta de formulario */
+        /* Formulário — sucesso */
         .form-success {
-            display: none;
-            background-color: #10b981;
-            color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
+            display:none;
+            background:#10b981;
+            color:white;
+            padding:1rem;
+            border-radius:.5rem;
+            margin-bottom:1rem;
+        }
+        .form-success.show { display:block; animation:heroUp .5s ease-out; }
+
+        /* WhatsApp flutuante */
+        .whatsapp-float {
+            position:fixed; bottom:2rem; right:2rem; z-index:999;
+            width:56px; height:56px;
+            background:#25d366; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            box-shadow:0 4px 20px rgba(37,211,102,.45);
+            transition:transform .3s, box-shadow .3s;
+        }
+        .whatsapp-float:hover {
+            transform:scale(1.12);
+            box-shadow:0 6px 28px rgba(37,211,102,.65);
         }
 
-        .form-success.show {
-            display: block;
-            animation: fadeInUp 0.8s ease-out;
+        /* Scroll top */
+        #scroll-top {
+            position:fixed; bottom:6rem; right:2.2rem; z-index:998;
+            width:40px; height:40px;
+            background:#ffb400; color:#111111;
+            border:none; border-radius:50%; cursor:pointer;
+            font-size:1.1rem; font-weight:800;
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none;
+            transition:opacity .3s, transform .3s;
+            box-shadow:0 4px 14px rgba(255,180,0,.4);
         }
+        #scroll-top.show { opacity:1; pointer-events:auto; }
+        #scroll-top:hover { transform:translateY(-3px); }
+
+        /* Select dark */
+        select option { background:#1f2937; }
     </style>
 </head>
 <body class="bg-dark text-gray-100">
-    <!-- ========================================
-         SECCIÓN 0: VARIABLES FÁCILES DE EDITAR
-         ¡EDITA AQUÍ PRIMERO!
-         
-         EMAIL_DESTINO: Donde llegarán los formularios
-         LOGO_URL: URL o ruta de tu logo
-         FAVICON_URL: URL o ruta de tu favicon
-         IMAGENES: Rutas de las imágenes de productos/clientes
-         ======================================== -->
-    
-    <!-- Variables de configuración (comentadas como referencia) -->
-    <!-- 
-    EMAIL_DESTINO: [TU_CORREO@AQUI.COM]  <- REEMPLAZA CON TU EMAIL
-    LOGO_URL: logo.png  <- Guarda logo.png en la misma carpeta
-    FAVICON_URL: favicon.png  <- Guarda favicon.png en la misma carpeta
-    
-    CÓMO CAMBIAR VARIABLES:
-    1. Email: Busca "formsubmit.co/" + reemplaza [TU_CORREO@AQUI.COM]
-    2. Logo: Busca todas las instancias de "logo.png" y reemplaza
-    3. Favicon: Ya configurado arriba, solo reemplaza favicon.png
-    4. Colores: Busca #F9B233 (primario), #E33E1B (acento), #1A1A1A (fondo)
-    -->
 
-    <!-- ========================================
-         NAVBAR / HEADER
-         Navegación sticky en la parte superior
-         
-         ESTRUCTURA:
-         - Logo + marca (izquierda)
-         - Menú de navegación (desktop)
-         - Botón de contacto (CTA)
-         - Menú hamburguesa (mobile)
-         
-         CÓMO EDITAR:
-         - Cambiar logo: Edita src="logo.png"
-         - Cambiar colores: Busca bg-dark, text-primary, bg-accent
-         - Agregar más links: Duplica <a> dentro de nav
-         ======================================== -->
-    <nav class="fixed top-0 w-full bg-dark bg-opacity-95 backdrop-blur-md z-50 border-b border-gray-800">
+    <!-- WhatsApp flutuante -->
+    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener"
+       class="whatsapp-float" aria-label="Falar no WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.563 4.144 1.54 5.878L0 24l6.304-1.517A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-4.996-1.365l-.359-.214-3.72.895.926-3.61-.234-.37A9.818 9.818 0 1112 21.818z"/>
+        </svg>
+    </a>
+
+    <!-- Scroll top -->
+    <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 border-b border-gray-800 backdrop-blur-md"
+         style="background-color:rgba(17,17,17,.96)">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                
-                <!-- LOGO + MARCA (izquierda) -->
+
                 <div class="flex items-center gap-3">
-                    <img src="smartdog3.png" alt="Smart Dog Logo" class="h-10 w-10 object-contain rounded-lg">
-                    <span class="text-xl font-bold text-primary hidden sm:block">Smart Dog</span>
+                    <img src="logo.png" alt="Smart Dog" class="h-10 w-auto object-contain">
                 </div>
 
-                <!-- MENÚ DE NAVEGACIÓN (desktop) - oculto en mobile -->
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#hero" class="text-gray-300 hover:text-primary transition">Início</a>
-                    <a href="#diferenciales" class="text-gray-300 hover:text-primary transition">Diferenciais</a>
-                    <a href="#inversiones" class="text-gray-300 hover:text-primary transition">Investimentos</a>
-                    <a href="#processo" class="text-gray-300 hover:text-primary transition">Processo</a>
-                    <a href="#contato" class="text-gray-300 hover:text-primary transition">Contato</a>
+                    <a href="#hero"          class="text-gray-300 hover:text-primary transition text-sm font-medium">Início</a>
+                    <a href="#diferenciais"  class="text-gray-300 hover:text-primary transition text-sm font-medium">Diferenciais</a>
+                    <a href="#inversiones"   class="text-gray-300 hover:text-primary transition text-sm font-medium">Investimentos</a>
+                    <a href="#processo"      class="text-gray-300 hover:text-primary transition text-sm font-medium">Processo</a>
+                    <a href="#contato"       class="text-gray-300 hover:text-primary transition text-sm font-medium">Contato</a>
                 </div>
 
-                <!-- BOTÓN CTA (derecha) -->
-                <button onclick="document.getElementById('contato').scrollIntoView({behavior: 'smooth'})" class="btn-primary text-white px-4 py-2 rounded-lg font-semibold text-sm sm:text-base">
+                <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
+                        class="hidden md:block btn-primary text-white px-5 py-2 rounded-lg font-semibold text-sm">
                     Agendar Consulta
                 </button>
 
-                <!-- MENÚ HAMBURGUESA (mobile) - solo visible en pantallas pequeñas -->
-                <button id="menu-toggle" class="md:hidden text-primary text-2xl">☰</button>
+                <button id="menu-toggle" class="md:hidden text-primary p-1" aria-label="Menu">
+                    <span id="hamburger-icon" class="text-2xl">☰</span>
+                </button>
             </div>
 
-            <!-- MENÚ MÓVIL (desplegable en mobile) - inicialmente oculto -->
-            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-800">
-                <a href="#hero" class="block text-gray-300 hover:text-primary transition py-2">Início</a>
-                <a href="#diferenciales" class="block text-gray-300 hover:text-primary transition py-2">Diferenciais</a>
-                <a href="#inversiones" class="block text-gray-300 hover:text-primary transition py-2">Investimentos</a>
-                <a href="#processo" class="block text-gray-300 hover:text-primary transition py-2">Processo</a>
-                <a href="#contato" class="block text-gray-300 hover:text-primary transition py-2">Contato</a>
+            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-800 pt-3">
+                <a href="#hero"         class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Início</a>
+                <a href="#diferenciais" class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Diferenciais</a>
+                <a href="#inversiones"  class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Investimentos</a>
+                <a href="#processo"     class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Processo</a>
+                <a href="#contato"      class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Contato</a>
+                <div class="pt-3">
+                    <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'});document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('hamburger-icon').textContent='☰';"
+                            class="w-full btn-primary text-white py-3 rounded-lg font-semibold">
+                        Agendar Consulta
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- ========================================
-         HERO SECTION
-         Sección principal con impacto visual
-         
-         ESTRUCTURA:
-         - Fondo degradado oscuro
-         - Título principal con destaque de color
-         - Subtítulo con stats
-         - Botón CTA principal
-         - Decoraciones visuales (líneas, iconos)
-         
-         CÓMO EDITAR:
-         - Título: Busca "Invista em um clássico"
-         - Subtítulo: Busca "30,000 unidades"
-         - Cambiar colores: #1A1A1A (fondo), #F9B233 (destaque)
-         - Background imagen: Edita background-image: url('...')
-         ======================================== -->
+    <!-- ===== HERO ===== -->
     <section id="hero" class="pt-32 pb-16 sm:pt-40 sm:pb-20 relative overflow-hidden gradient-hero">
-        <!-- Decoraciones de fondo (opcional) -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-primary opacity-5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent opacity-5 rounded-full blur-3xl"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 opacity-5 rounded-full blur-3xl bg-primary"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 opacity-5 rounded-full blur-3xl bg-accent"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                
-                <!-- CONTENIDO PRINCIPAL (izquierda) -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+
                 <div class="space-y-6">
-                    <!-- Pequeña etiqueta de bienvenida -->
-                    <div class="inline-block">
+                    <div class="hero-left">
                         <span class="text-primary font-semibold text-sm uppercase tracking-wider">🔥 Oportunidade de Franquia 2025</span>
                     </div>
 
-                    <!-- TÍTULO PRINCIPAL - EDITAR AQUÍ -->
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight animate-slideInLeft">
-                        Conheça o lado <span class="text-primary">Smart</span> de investir<br>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight hero-left h-d1">
+                        Conheça o lado <span class="text-primary">Smart</span> de investir
                         em um <span class="text-accent">clássico</span> popular
                     </h1>
 
-                    <!-- SUBTÍTULO - EDITAR AQUÍ -->
-                    <p class="text-lg text-gray-300 leading-relaxed animate-slideInLeft delay-100">
+                    <p class="text-lg text-gray-300 leading-relaxed hero-up h-d2">
                         Seja um Franqueado Smart Dog. Modelo de negócio pronto para lançamento, com operação estruturada, alto potencial de retorno e receitas gourmet exclusivas.
                     </p>
 
-                    <!-- STATS (números clave) - EDITAR AQUÍ -->
-                    <div class="grid grid-cols-3 gap-4 py-4">
-                        <div class="animate-fadeInUp delay-200">
+                    <div class="grid grid-cols-3 gap-4 py-4 hero-up h-d3">
+                        <div>
                             <p class="text-3xl font-bold text-primary">31k+</p>
                             <p class="text-sm text-gray-400">Hot dogs em 2025</p>
                         </div>
-                        <div class="animate-fadeInUp delay-300">
-                            <p class="text-3xl font-bold text-primary">19-31</p>
+                        <div class="border-l border-gray-700 pl-4">
+                            <p class="text-3xl font-bold text-primary">19–31</p>
                             <p class="text-sm text-gray-400">Meses de retorno</p>
                         </div>
-                        <div class="animate-fadeInUp delay-400">
+                        <div class="border-l border-gray-700 pl-4">
                             <p class="text-3xl font-bold text-primary">R$12bi</p>
                             <p class="text-sm text-gray-400">Mercado BR/ano</p>
                         </div>
                     </div>
 
-                    <!-- BOTONES CTA -->
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                        <button onclick="document.getElementById('contato').scrollIntoView({behavior: 'smooth'})" class="btn-primary text-white px-8 py-3 rounded-lg font-bold text-lg">
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2 hero-up h-d4">
+                        <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
+                                class="btn-primary pulse-glow text-white px-8 py-3 rounded-lg font-bold text-lg">
                             Quero Investir
                         </button>
-                        <a href="#processo" class="border-2 border-primary text-primary hover:bg-primary hover:text-dark px-8 py-3 rounded-lg font-bold text-lg transition text-center">
+                        <a href="#processo" class="btn-outline px-8 py-3 rounded-lg font-bold text-lg text-center">
                             Ver Processo
                         </a>
                     </div>
                 </div>
 
-                <!-- IMAGEN / ILUSTRACIÓN (derecha) - PLACEHOLDER -->
-                <div class="relative hidden md:block">
-                    <div class="bg-gradient-to-br from-primary to-accent p-1 rounded-2xl">
-                        <img src="logo.png" alt="Smart Dog Branding" class="w-full h-auto rounded-xl opacity-90 hover:opacity-100 transition">
+                <div class="relative hidden md:block hero-right h-d2">
+                    <div class="rounded-2xl p-0.5" style="background:linear-gradient(135deg,#ffb400,#d32c06)">
+                        <div class="bg-gray-900 rounded-xl p-10 flex items-center justify-center">
+                            <img src="logo.png" alt="Smart Dog" class="w-full max-w-xs h-auto object-contain">
+                        </div>
                     </div>
                     <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-accent opacity-20 rounded-full blur-2xl"></div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-primary opacity-10 rounded-full blur-2xl"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         SEÇÃO GALERIA / CARRUSEL
-         Muestra imágenes reales del producto y área de trabajo
-
-         CÓMO REEMPLAZAR LAS IMÁGENES:
-         Cada slide tiene un atributo src con una imagen placeholder.
-         Para reemplazar:
-           1. Guarda tu foto en la misma carpeta que index.html
-           2. Busca la línea: src="https://placehold.co/..."
-           3. Reemplázala por: src="nombre-de-tu-foto.jpg"
-
-         IMÁGENES RECOMENDADAS (800x500px mínimo):
-           - Slide 1: foto del hot dog estrella / producto principal
-           - Slide 2: foto del área de trabajo / punto de venta
-           - Slide 3: foto de cliente / ambiente de atención
-           - Slide 4: foto del equipo / operación interna
-
-         AGREGAR MÁS SLIDES:
-           Copia un bloque <div class="carousel-slide"> completo
-           y pégalo antes del cierre </div> del carousel-track.
-           El JS detecta los slides automáticamente.
-         ======================================== -->
+    <!-- ===== GALERIA ===== -->
     <section id="galeria" class="py-16 sm:py-20 bg-dark">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
                     Nossa <span class="text-primary">Operação</span> em Imagens
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Conheça o produto, o ambiente e a experiência Smart Dog
-                </p>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Conheça o produto, o ambiente e a experiência Smart Dog</p>
+                <div class="w-20 h-1 mt-6 mx-auto" style="background:linear-gradient(90deg,#ffb400,#d32c06)"></div>
             </div>
 
-            <!-- CONTENEDOR DEL CARRUSEL -->
-            <div class="relative overflow-hidden rounded-2xl" id="carousel-container">
-
-                <!-- TRACK: contiene todos los slides -->
+            <div class="relative overflow-hidden rounded-2xl reveal" id="carousel-container">
                 <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
 
-                    <!-- ===== SLIDE 1 =====
-                         REEMPLAZAR: cambia src por tu foto del producto
-                         Ejemplo: src="foto-hotdog-principal.jpg"
-                         Tamaño recomendado: 1200x600px
-                    ===== -->
+                    <!-- Slide 1 -->
                     <div class="carousel-slide min-w-full relative">
-                        <img
-                            src="https://placehold.co/1200x600/1A1A1A/F9B233?text=Foto+1+—+Produto+Principal"
-                            alt="Produto principal Smart Dog"
-                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
-                        >
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
-                            <p class="text-white font-bold text-lg">Nosso Produto Estrela</p>
-                            <p class="text-gray-300 text-sm">Hot dog gourmet com molhos exclusivos</p>
+                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
+                             style="background:linear-gradient(135deg,#111111 0%,#1e1e1e 55%,#2a1a00 100%)">
+                            <div class="absolute right-0 top-0 bottom-0 flex items-center pr-10 opacity-[0.07] select-none pointer-events-none">
+                                <span style="font-size:22rem;font-weight:900;color:#ffb400;line-height:1">D</span>
+                            </div>
+                            <div class="relative z-10 text-center px-8">
+                                <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Substitua pela sua foto do produto</p>
+                                <p class="text-5xl sm:text-6xl font-bold text-white mb-2">Produto <span class="text-primary">Estrela</span></p>
+                                <p class="text-gray-400 text-lg">Hot dog gourmet com molhos exclusivos</p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                                <p class="text-white font-bold">Nosso Produto Estrela</p>
+                                <p class="text-gray-300 text-sm">Hot dog gourmet com molhos exclusivos</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ===== SLIDE 2 =====
-                         REEMPLAZAR: cambia src por foto del punto de venta
-                         Ejemplo: src="foto-ponto-de-venda.jpg"
-                    ===== -->
+                    <!-- Slide 2 -->
                     <div class="carousel-slide min-w-full relative">
-                        <img
-                            src="https://placehold.co/1200x600/1A1A1A/E33E1B?text=Foto+2+—+Ponto+de+Venda"
-                            alt="Ponto de venda Smart Dog"
-                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
-                        >
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
-                            <p class="text-white font-bold text-lg">Ponto de Venda</p>
-                            <p class="text-gray-300 text-sm">Estrutura funcional e atrativa</p>
+                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
+                             style="background:linear-gradient(135deg,#d32c06 0%,#7a1503 100%)">
+                            <div class="absolute right-0 top-0 bottom-0 flex items-center pr-10 opacity-[0.07] select-none pointer-events-none">
+                                <span style="font-size:22rem;font-weight:900;color:white;line-height:1">O</span>
+                            </div>
+                            <div class="relative z-10 text-center px-8">
+                                <p class="text-red-200 font-semibold text-xs uppercase tracking-widest mb-4">Substitua pela sua foto do ponto de venda</p>
+                                <p class="text-5xl sm:text-6xl font-bold text-white mb-2">Ponto de <span style="color:#ffb400">Venda</span></p>
+                                <p class="text-red-100 text-lg">Estrutura funcional e atrativa</p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                                <p class="text-white font-bold">Ponto de Venda</p>
+                                <p class="text-gray-300 text-sm">Estrutura funcional e atrativa</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ===== SLIDE 3 =====
-                         REEMPLAZAR: cambia src por foto de atención al cliente
-                         Ejemplo: src="foto-atendimento.jpg"
-                    ===== -->
+                    <!-- Slide 3 -->
                     <div class="carousel-slide min-w-full relative">
-                        <img
-                            src="https://placehold.co/1200x600/1A1A1A/F9B233?text=Foto+3+—+Atendimento"
-                            alt="Atendimento Smart Dog"
-                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
-                        >
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
-                            <p class="text-white font-bold text-lg">Experiência do Cliente</p>
-                            <p class="text-gray-300 text-sm">Atendimento rápido e de qualidade</p>
+                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
+                             style="background:linear-gradient(135deg,#ffb400 0%,#cc8800 100%)">
+                            <div class="absolute left-0 top-0 bottom-0 flex items-center pl-10 opacity-[0.07] select-none pointer-events-none">
+                                <span style="font-size:22rem;font-weight:900;color:#111111;line-height:1">G</span>
+                            </div>
+                            <div class="relative z-10 text-center px-8">
+                                <p class="text-yellow-900 font-semibold text-xs uppercase tracking-widest mb-4 opacity-70">Substitua pela sua foto de atendimento</p>
+                                <p class="text-5xl sm:text-6xl font-bold text-black mb-2">Experiência do <span style="color:#d32c06">Cliente</span></p>
+                                <p class="text-yellow-900 text-lg">Atendimento rápido e de qualidade</p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                                <p class="text-white font-bold">Experiência do Cliente</p>
+                                <p class="text-gray-300 text-sm">Atendimento rápido e de qualidade</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ===== SLIDE 4 =====
-                         REEMPLAZAR: cambia src por foto del equipo/operación
-                         Ejemplo: src="foto-equipe.jpg"
-                    ===== -->
+                    <!-- Slide 4 -->
                     <div class="carousel-slide min-w-full relative">
-                        <img
-                            src="https://placehold.co/1200x600/1A1A1A/E33E1B?text=Foto+4+—+Equipe+e+Operação"
-                            alt="Equipe Smart Dog"
-                            class="w-full h-72 sm:h-96 object-cover rounded-2xl"
-                        >
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
-                            <p class="text-white font-bold text-lg">Nossa Equipe</p>
-                            <p class="text-gray-300 text-sm">Treinamento e padronização em cada unidade</p>
+                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
+                             style="background:linear-gradient(135deg,#1e1e1e 0%,#2d1a00 60%,#d32c06 100%)">
+                            <div class="absolute right-0 top-0 bottom-0 flex items-center pr-10 opacity-[0.07] select-none pointer-events-none">
+                                <span style="font-size:22rem;font-weight:900;color:#d32c06;line-height:1">S</span>
+                            </div>
+                            <div class="relative z-10 text-center px-8">
+                                <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Substitua pela sua foto da equipe</p>
+                                <p class="text-5xl sm:text-6xl font-bold text-white mb-2">Nossa <span class="text-primary">Equipe</span></p>
+                                <p class="text-gray-300 text-lg">Treinamento e padronização em cada unidade</p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
+                                <p class="text-white font-bold">Nossa Equipe</p>
+                                <p class="text-gray-300 text-sm">Treinamento e padronização em cada unidade</p>
+                            </div>
                         </div>
                     </div>
 
-                </div><!-- fin carousel-track -->
+                </div>
 
-                <!-- BOTÓN ANTERIOR -->
-                <button
-                    id="carousel-prev"
-                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 hover:bg-primary hover:text-dark text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg font-bold"
-                    aria-label="Anterior"
-                >‹</button>
-
-                <!-- BOTÓN SIGUIENTE -->
-                <button
-                    id="carousel-next"
-                    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 hover:bg-primary hover:text-dark text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg font-bold"
-                    aria-label="Siguiente"
-                >›</button>
-
-            </div><!-- fin carousel-container -->
-
-            <!-- PUNTOS INDICADORES -->
-            <div class="flex justify-center gap-3 mt-6" id="carousel-dots">
-                <!-- Los puntos se generan automáticamente por JS -->
+                <button id="carousel-prev"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 hover:bg-primary hover:text-dark text-white w-10 h-10 rounded-full flex items-center justify-center transition text-xl font-bold"
+                        aria-label="Anterior">‹</button>
+                <button id="carousel-next"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 hover:bg-primary hover:text-dark text-white w-10 h-10 rounded-full flex items-center justify-center transition text-xl font-bold"
+                        aria-label="Próximo">›</button>
             </div>
 
+            <div class="flex justify-center gap-3 mt-6" id="carousel-dots"></div>
         </div>
     </section>
 
-    <!-- ========================================
-         SEÇÃO MERCADO
-         Dados do mercado brasileiro de hot dogs
-         ======================================== -->
-    <section id="mercado" class="py-16 sm:py-20 bg-gray-950">
+    <!-- ===== MERCADO ===== -->
+    <section id="mercado" class="py-16 sm:py-20" style="background-color:#0a0a0a">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
                     O <span class="text-primary">Mercado</span> que você vai dominar
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    O setor de alimentação fora do lar no Brasil é um dos mais resilientes e em expansão
-                </p>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">O setor de alimentação fora do lar no Brasil é um dos mais resilientes e em expansão</p>
+                <div class="w-20 h-1 mt-6 mx-auto" style="background:linear-gradient(90deg,#ffb400,#d32c06)"></div>
             </div>
 
             <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center animate-fadeInUp delay-100">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center reveal rd1">
                     <p class="text-4xl font-bold text-primary mb-2">R$12bi</p>
                     <p class="text-gray-400 leading-relaxed">Mercado de hot dogs no Brasil por ano</p>
                 </div>
-
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center animate-fadeInUp delay-200">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center reveal rd2">
                     <p class="text-4xl font-bold text-primary mb-2">+16%</p>
                     <p class="text-gray-400 leading-relaxed">Crescimento do faturamento no setor</p>
                 </div>
-
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center animate-fadeInUp delay-300">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center reveal rd3">
                     <p class="text-4xl font-bold text-primary mb-2">R$230bi</p>
                     <p class="text-gray-400 leading-relaxed">Mercado de alimentação fora do lar</p>
                 </div>
-
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center animate-fadeInUp delay-400">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl text-center reveal rd4">
                     <p class="text-4xl font-bold text-primary mb-2">R$1tri</p>
                     <p class="text-gray-400 leading-relaxed">Mercado total de alimentos no Brasil</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         SEÇÃO DIFERENCIAIS
-         Destaca 3 ventajas principales
+    <!-- ===== SEJA O PRIMEIRO ===== -->
+    <section id="seja-o-primeiro" class="relative py-24 sm:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+             style="background-image:url('smartdog3.png')"></div>
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
 
-         ESTRUCTURA:
-         - 3 cards con ícono, título, descripción
-         - Fondo oscuro con bordes sutiles
-         - Hover effects para interactividad
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+            <div class="backdrop-blur-md bg-black bg-opacity-50 border border-primary border-opacity-40
+                        rounded-2xl px-8 py-12 sm:px-14 sm:py-16 text-center shadow-2xl max-w-2xl w-full reveal">
 
-         CÓMO EDITAR:
-         - Títulos: "Recetas Gourmet", "Operación Simplificada", "Alta Rentabilidad"
-         - Descripciones: Edita el texto dentro de <p>
-         - Iconos: Cambia los símbolos emoji o usa SVG
-         - Colores: bg-dark, border-primary, text-accent
-         ======================================== -->
-    <section id="diferenciales" class="py-16 sm:py-20 bg-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- ENCABEZADO DE SECCIÓN -->
-            <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-                    Por qué <span class="text-primary">Smart Dog</span> destaca
+                <span class="inline-block bg-primary text-dark text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full mb-6">
+                    Oportunidade Exclusiva
+                </span>
+
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+                    Seja um dos <span class="text-primary">primeiros</span><br>franqueados Smart Dog
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Três pilares que fazem a diferença no negócio de franquias
+
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                    Os primeiros franqueados escolhem as <strong class="text-primary">melhores regiões do Brasil</strong> — antes que outros cheguem. Garanta sua zona exclusiva e construa seu negócio no momento certo.
                 </p>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+
+                <ul class="text-left space-y-3 mb-10 inline-block">
+                    <li class="flex items-center gap-3 text-gray-300">
+                        <span class="text-primary text-xl font-bold">✓</span>
+                        <span>Escolha da região com exclusividade territorial</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-gray-300">
+                        <span class="text-primary text-xl font-bold">✓</span>
+                        <span>Suporte direto dos fundadores na implantação</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-gray-300">
+                        <span class="text-primary text-xl font-bold">✓</span>
+                        <span>Condições especiais para primeiros franqueados</span>
+                    </li>
+                </ul>
+
+                <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
+                        class="btn-primary pulse-glow text-white px-10 py-4 rounded-lg font-bold text-lg w-full sm:w-auto">
+                    Quero Garantir Minha Região
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIFERENCIAIS ===== -->
+    <section id="diferenciais" class="py-16 sm:py-20 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                    Por que <span class="text-primary">Smart Dog</span> se destaca
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Três pilares que fazem a diferença no negócio de franquias</p>
+                <div class="w-20 h-1 mt-6 mx-auto" style="background:linear-gradient(90deg,#ffb400,#d32c06)"></div>
             </div>
 
-            <!-- GRID DE DIFERENCIALES -->
             <div class="grid md:grid-cols-3 gap-8">
-                
-                <!-- DIFERENCIAL 1: Recetas Gourmet -->
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl animate-fadeInUp delay-100">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl reveal rd1">
                     <div class="text-5xl mb-4">🍽️</div>
                     <h3 class="text-2xl font-bold mb-3 text-primary">Receitas Exclusivas</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Fórmulas provadas e secretas que diferenciam nossos hot dogs no mercado. Qualidade premium em cada mordida.
-                    </p>
+                    <p class="text-gray-400 leading-relaxed">Fórmulas provadas e secretas que diferenciam nossos hot dogs no mercado. Qualidade premium em cada mordida.</p>
                     <div class="mt-6 pt-4 border-t border-gray-800">
-                        <p class="text-sm text-primary font-semibold">✓ Desenvolvidas por chefs experts</p>
+                        <p class="text-sm text-primary font-semibold">✓ Desenvolvidas por chefs especialistas</p>
                     </div>
                 </div>
 
-                <!-- DIFERENCIAL 2: Operación Simplificada -->
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl animate-fadeInUp delay-200">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl reveal rd2">
                     <div class="text-5xl mb-4">⚙️</div>
                     <h3 class="text-2xl font-bold mb-3 text-primary">Operação Simplificada</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Tudo o que você precisa para operar com segurança, desde o primeiro dia até a expansão.
-                    </p>
+                    <p class="text-gray-400 leading-relaxed">Tudo o que você precisa para operar com segurança, desde o primeiro dia até a expansão.</p>
                     <div class="mt-6 pt-4 border-t border-gray-800 space-y-1">
                         <p class="text-sm text-primary font-semibold">✓ Treinamento estruturado</p>
                         <p class="text-sm text-primary font-semibold">✓ Manuais operacionais</p>
@@ -591,341 +478,215 @@
                     </div>
                 </div>
 
-                <!-- DIFERENCIAL 3: Alta Rentabilidad -->
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl animate-fadeInUp delay-300">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl reveal rd3">
                     <div class="text-5xl mb-4">💰</div>
-                    <h3 class="text-2xl font-bold mb-3 text-primary">Alta Rentabilidade Comprovada</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Margens de lucro projetadas entre 40-60%, com retorno estimado entre 19 e 31 meses, conforme a modalidade escolhida.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Alta Rentabilidade</h3>
+                    <p class="text-gray-400 leading-relaxed">Margens de lucro projetadas entre 40–60%, com retorno estimado entre 19 e 31 meses, conforme a modalidade escolhida.</p>
                     <div class="mt-6 pt-4 border-t border-gray-800">
-                        <p class="text-sm text-primary font-semibold">✓ Potencial de lucro baseado em estudos de mercado</p>
+                        <p class="text-sm text-primary font-semibold">✓ Potencial baseado em estudos de mercado</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         SEÇÃO MISSÃO / VISÃO / VALORES
-         [PLACEHOLDER - descomentar quando pronto para publicar]
-
-         MISSÃO:
-         Oferecer alimentos de qualidade com rapidez e cuidado, criando uma
-         experiência acessível ao consumidor e oportunidades sustentáveis
-         para empreendedores.
-
-         VISÃO:
-         Ser referência nacional em franquias de hot dogs, reconhecida pela
-         simplicidade do modelo, excelência operacional e forte conexão com
-         o consumidor.
-
-         VALORES:
-         - Compromisso com a qualidade
-         - Respeito (franqueados, clientes, fornecedores, equipe)
-         - Clareza e transparência
-         - Simplicidade e eficiência
-         - Espírito colaborativo
-         - Resiliência
-         ======================================== -->
-    <!--
-    <section id="missao-visao-valores" class="py-16 sm:py-20 bg-dark">
+    <!-- ===== MISSÃO / VISÃO / VALORES ===== -->
+    <section id="missao-visao-valores" class="py-16 sm:py-20" style="background-color:#0a0a0a">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
                     Nossa <span class="text-primary">Essência</span>
                 </h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Os valores que guiam cada decisão da marca</p>
+                <div class="w-20 h-1 mt-6 mx-auto" style="background:linear-gradient(90deg,#ffb400,#d32c06)"></div>
             </div>
+
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl reveal rd1">
                     <div class="text-5xl mb-4">🎯</div>
                     <h3 class="text-2xl font-bold mb-3 text-primary">Missão</h3>
                     <p class="text-gray-400 leading-relaxed">Oferecer alimentos de qualidade com rapidez e cuidado, criando uma experiência acessível ao consumidor e oportunidades sustentáveis para empreendedores.</p>
                 </div>
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl reveal rd2">
                     <div class="text-5xl mb-4">🔭</div>
                     <h3 class="text-2xl font-bold mb-3 text-primary">Visão</h3>
                     <p class="text-gray-400 leading-relaxed">Ser referência nacional em franquias de hot dogs, reconhecida pela simplicidade do modelo, excelência operacional e forte conexão com o consumidor.</p>
                 </div>
-                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl">
+                <div class="card-hover bg-gray-900 border border-gray-800 p-8 rounded-xl reveal rd3">
                     <div class="text-5xl mb-4">💎</div>
                     <h3 class="text-2xl font-bold mb-3 text-primary">Valores</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li>✓ Compromisso com a qualidade</li>
-                        <li>✓ Respeito</li>
-                        <li>✓ Clareza e transparência</li>
-                        <li>✓ Simplicidade e eficiência</li>
-                        <li>✓ Espírito colaborativo</li>
-                        <li>✓ Resiliência</li>
+                        <li class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>Compromisso com a qualidade</li>
+                        <li class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>Respeito</li>
+                        <li class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>Clareza e transparência</li>
+                        <li class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>Simplicidade e eficiência</li>
+                        <li class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>Espírito colaborativo</li>
+                        <li class="flex items-center gap-2"><span class="text-primary font-bold">✓</span>Resiliência</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-    -->
 
-    <!-- ========================================
-         SECCIÓN TABLA COMPARATIVA DE INVERSIONES
-         Muestra 3 modalidades con detalles
-
-         ESTRUCTURA:
-         - Cards o tabla con 3 modalidades (NANO, SMART, DRIVE)
-         - Informação: investimento inicial, retorno em meses, características
-         - Destacado da opção mais popular (SMART)
-
-         CÓMO EDITAR:
-         - Valores de investimento: Busca $157k, $229k, $291k
-         - Retorno em meses: 27, 19, 31
-         - Características: Edita bullets dentro de cada card
-         - Mudar "Mais Popular": Edita la clase sm:scale-105
-         ======================================== -->
-    <section id="inversiones" class="py-16 sm:py-20 bg-gray-950">
+    <!-- ===== INVESTIMENTOS ===== -->
+    <section id="inversiones" class="py-16 sm:py-20 bg-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- ENCABEZADO -->
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
                     Modelos de <span class="text-primary">Investimento</span>
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Escolha a modalidade que melhor se adapta ao seu perfil e orçamento
-                </p>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Escolha a modalidade que melhor se adapta ao seu perfil e orçamento</p>
+                <div class="w-20 h-1 mt-6 mx-auto" style="background:linear-gradient(90deg,#ffb400,#d32c06)"></div>
             </div>
 
-            <!-- GRID DE TARJETAS (3 columnas) -->
-            <div class="grid md:grid-cols-3 gap-8">
-                
-                <!-- MODALIDAD 1: NANO -->
-                <div class="card-hover bg-gray-900 border border-gray-800 rounded-xl overflow-hidden animate-fadeInUp delay-100">
-                    <!-- Header com nome -->
-                    <div class="bg-gradient-to-r from-gray-800 to-gray-900 p-6 border-b border-gray-800">
-                        <h3 class="text-2xl font-bold text-primary">Modalidad NANO</h3>
-                        <p class="text-gray-400 text-sm mt-2">Ideal para empreendedores</p>
-                    </div>
+            <div class="grid md:grid-cols-3 gap-8 items-start">
 
-                    <!-- Contenido -->
-                    <div class="p-8 space-y-6">
-                        <!-- Investimento principal -->
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Investimento Inicial</p>
+                <!-- NANO -->
+                <div class="card-hover bg-gray-900 border border-gray-800 rounded-xl overflow-hidden reveal rd1">
+                    <div class="bg-gradient-to-r from-gray-800 to-gray-900 p-6 border-b border-gray-800">
+                        <h3 class="text-2xl font-bold text-primary">Modalidade NANO</h3>
+                        <p class="text-gray-400 text-sm mt-1">Ideal para empreendedores</p>
+                    </div>
+                    <div class="p-8 space-y-5">
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Investimento Inicial</p>
                             <p class="text-3xl font-bold text-primary">~$157k</p>
                         </div>
-
-                        <!-- Divider -->
                         <div class="divider"></div>
-
-                        <!-- ROI -->
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Retorno Estimado</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Retorno Estimado</p>
                             <p class="text-2xl font-bold text-accent">27 meses</p>
                         </div>
-
-                        <!-- Características -->
-                        <div class="space-y-3 pt-4">
-                            <p class="text-gray-300 font-semibold text-sm">Incluye:</p>
-                            <ul class="space-y-2">
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Ponto de venda compacto</span>
-                                </li>
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Capacitação básica</span>
-                                </li>
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Suporte operacional</span>
-                                </li>
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Kit inicial de produtos</span>
-                                </li>
+                        <div class="space-y-2 pt-2">
+                            <p class="text-gray-300 font-semibold text-sm">Inclui:</p>
+                            <ul class="space-y-1.5 text-gray-400 text-sm">
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Ponto de venda compacto</li>
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Capacitação básica</li>
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Suporte operacional</li>
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Kit inicial de produtos</li>
                             </ul>
                         </div>
-
-                        <!-- Métricas adicionais NANO -->
                         <div class="divider"></div>
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Faturamento Mensal</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Faturamento Mensal</p>
                             <p class="text-xl font-bold text-primary">R$70k – 75k/mês</p>
                         </div>
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Rentabilidade Mensal</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Rentabilidade Mensal</p>
                             <p class="text-xl font-bold text-accent">10%/mês</p>
                         </div>
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Tamanho do Local</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Tamanho do Local</p>
                             <p class="text-base font-semibold text-gray-300">Ponto compacto</p>
                         </div>
-
-                        <!-- Botón -->
-                        <button onclick="document.getElementById('contato').scrollIntoView({behavior: 'smooth'})" class="w-full btn-primary text-white py-2 rounded-lg font-semibold mt-6">
+                        <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
+                                class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold">
                             Mais Informações
                         </button>
                     </div>
                 </div>
 
-                <!-- MODALIDAD 2: SMART (DESTACADA - Mais Popular) -->
-                <div class="card-hover bg-gradient-to-br from-primary to-accent p-1 rounded-xl overflow-hidden animate-fadeInUp delay-200 md:scale-105 md:z-10">
+                <!-- SMART (destaque) -->
+                <div class="card-hover rounded-xl overflow-hidden reveal rd2 md:scale-105 md:z-10"
+                     style="background:linear-gradient(135deg,#ffb400,#d32c06);padding:2px">
                     <div class="bg-gray-900 rounded-[10px] overflow-hidden h-full flex flex-col">
-                        <!-- Badge Mais Popular -->
                         <div class="bg-accent text-white text-center py-2 font-bold text-sm uppercase tracking-wide">
                             ⭐ Mais Popular
                         </div>
-
-                        <!-- Header -->
                         <div class="bg-gradient-to-r from-gray-800 to-gray-900 p-6 border-b border-gray-800">
-                            <h3 class="text-2xl font-bold text-primary">Modalidad SMART</h3>
-                            <p class="text-gray-400 text-sm mt-2">Equilíbrio perfeito</p>
+                            <h3 class="text-2xl font-bold text-primary">Modalidade SMART</h3>
+                            <p class="text-gray-400 text-sm mt-1">Equilíbrio perfeito</p>
                         </div>
-
-                        <!-- Contenido -->
-                        <div class="p-8 space-y-6 flex-1">
-                            <!-- Investimento principal -->
-                            <div class="space-y-2">
-                                <p class="text-gray-400 text-sm uppercase tracking-wide">Investimento Inicial</p>
+                        <div class="p-8 space-y-5 flex-1">
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Investimento Inicial</p>
                                 <p class="text-3xl font-bold text-primary">~$229k</p>
                             </div>
-
-                            <!-- Divider -->
                             <div class="divider"></div>
-
-                            <!-- ROI -->
-                            <div class="space-y-2">
-                                <p class="text-gray-400 text-sm uppercase tracking-wide">Retorno Estimado</p>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Retorno Estimado</p>
                                 <p class="text-2xl font-bold text-accent">19 meses</p>
-                                <p class="text-xs text-primary font-semibold">⚡ Retorno más rápido</p>
+                                <p class="text-xs text-primary font-semibold mt-1">⚡ Retorno mais rápido</p>
                             </div>
-
-                            <!-- Características -->
-                            <div class="space-y-3 pt-4">
-                                <p class="text-gray-300 font-semibold text-sm">Incluye:</p>
-                                <ul class="space-y-2">
-                                    <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                        <span class="text-primary mt-1">✓</span>
-                                        <span>Ponto de venda padrão</span>
-                                    </li>
-                                    <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                        <span class="text-primary mt-1">✓</span>
-                                        <span>Capacitação Premium</span>
-                                    </li>
-                                    <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                        <span class="text-primary mt-1">✓</span>
-                                        <span>Suporte prioritário 24/7</span>
-                                    </li>
-                                    <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                        <span class="text-primary mt-1">✓</span>
-                                        <span>Marketing local incluído</span>
-                                    </li>
-                                    <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                        <span class="text-primary mt-1">✓</span>
-                                        <span>Equipe de operação própria</span>
-                                    </li>
+                            <div class="space-y-2 pt-2">
+                                <p class="text-gray-300 font-semibold text-sm">Inclui:</p>
+                                <ul class="space-y-1.5 text-gray-400 text-sm">
+                                    <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Ponto de venda padrão</li>
+                                    <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Capacitação Premium</li>
+                                    <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Suporte prioritário 24/7</li>
+                                    <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Marketing local incluído</li>
+                                    <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Equipe de operação própria</li>
                                 </ul>
                             </div>
-
-                            <!-- Métricas adicionais SMART -->
                             <div class="divider"></div>
-                            <div class="space-y-2">
-                                <p class="text-gray-400 text-sm uppercase tracking-wide">Faturamento Mensal</p>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Faturamento Mensal</p>
                                 <p class="text-xl font-bold text-primary">R$90k – 95k/mês</p>
                             </div>
-                            <div class="space-y-2">
-                                <p class="text-gray-400 text-sm uppercase tracking-wide">Rentabilidade Mensal</p>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Rentabilidade Mensal</p>
                                 <p class="text-xl font-bold text-accent">17%/mês</p>
                             </div>
-                            <div class="space-y-2">
-                                <p class="text-gray-400 text-sm uppercase tracking-wide">Tamanho do Local</p>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Tamanho do Local</p>
                                 <p class="text-base font-semibold text-gray-300">30m²</p>
                             </div>
-
-                            <!-- Botón -->
-                            <button onclick="document.getElementById('contato').scrollIntoView({behavior: 'smooth'})" class="w-full bg-accent text-white py-2 rounded-lg font-semibold mt-6 hover:bg-red-600 transition">
+                            <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
+                                    class="w-full bg-accent hover:bg-red-700 text-white py-2.5 rounded-lg font-semibold transition">
                                 Quero Este Plano
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- MODALIDAD 3: DRIVE -->
-                <div class="card-hover bg-gray-900 border border-gray-800 rounded-xl overflow-hidden animate-fadeInUp delay-300">
-                    <!-- Header -->
+                <!-- DRIVE -->
+                <div class="card-hover bg-gray-900 border border-gray-800 rounded-xl overflow-hidden reveal rd3">
                     <div class="bg-gradient-to-r from-gray-800 to-gray-900 p-6 border-b border-gray-800">
-                        <h3 class="text-2xl font-bold text-primary">Modalidad DRIVE</h3>
-                        <p class="text-gray-400 text-sm mt-2">Para empresários premium</p>
+                        <h3 class="text-2xl font-bold text-primary">Modalidade DRIVE</h3>
+                        <p class="text-gray-400 text-sm mt-1">Para empresários premium</p>
                     </div>
-
-                    <!-- Contenido -->
-                    <div class="p-8 space-y-6">
-                        <!-- Investimento principal -->
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Investimento Inicial</p>
+                    <div class="p-8 space-y-5">
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Investimento Inicial</p>
                             <p class="text-3xl font-bold text-primary">~$291k</p>
                         </div>
-
-                        <!-- Divider -->
                         <div class="divider"></div>
-
-                        <!-- ROI -->
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Retorno Estimado</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Retorno Estimado</p>
                             <p class="text-2xl font-bold text-accent">31 meses</p>
                         </div>
-
-                        <!-- Características -->
-                        <div class="space-y-3 pt-4">
-                            <p class="text-gray-300 font-semibold text-sm">Incluye:</p>
-                            <ul class="space-y-2">
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Ponto de venda Premium Drive-Thru</span>
-                                </li>
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Capacitação Executiva</span>
-                                </li>
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Suporte dedicado VIP</span>
-                                </li>
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Marketing regional completo</span>
-                                </li>
-                                <li class="flex items-start gap-2 text-gray-400 text-sm">
-                                    <span class="text-primary mt-1">✓</span>
-                                    <span>Equipe gestora incluída</span>
-                                </li>
+                        <div class="space-y-2 pt-2">
+                            <p class="text-gray-300 font-semibold text-sm">Inclui:</p>
+                            <ul class="space-y-1.5 text-gray-400 text-sm">
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Ponto de venda Premium Drive-Thru</li>
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Capacitação Executiva</li>
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Suporte dedicado VIP</li>
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Marketing regional completo</li>
+                                <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Equipe gestora incluída</li>
                             </ul>
                         </div>
-
-                        <!-- Métricas adicionais DRIVE -->
                         <div class="divider"></div>
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Faturamento Mensal</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Faturamento Mensal</p>
                             <p class="text-xl font-bold text-primary">R$130k – 135k/mês</p>
                         </div>
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Rentabilidade Mensal</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Rentabilidade Mensal</p>
                             <p class="text-xl font-bold text-accent">8%/mês</p>
                         </div>
-                        <div class="space-y-2">
-                            <p class="text-gray-400 text-sm uppercase tracking-wide">Tamanho do Local</p>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-wide mb-1">Tamanho do Local</p>
                             <p class="text-base font-semibold text-gray-300">60m²</p>
                         </div>
-
-                        <!-- Botón -->
-                        <button onclick="document.getElementById('contato').scrollIntoView({behavior: 'smooth'})" class="w-full btn-primary text-white py-2 rounded-lg font-semibold mt-6">
+                        <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
+                                class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold">
                             Solicitar Detalhes
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Nota inferior -->
-            <div class="text-center mt-12">
+            <div class="text-center mt-12 reveal">
                 <p class="text-gray-500 text-sm">
                     💡 Os valores incluem: treinamento, equipamentos, marca registrada e suporte contínuo.<br>
                     Os retornos estimados variam conforme localização, gestão e mercado local.
@@ -934,371 +695,191 @@
         </div>
     </section>
 
-    <!-- ========================================
-         SEÇÃO PROCESSO DE 6 PASSOS
-         Timeline que mostra a jornada do franqueado
-         
-         ESTRUCTURA:
-         - 6 passos em timeline (vertical mobile, horizontal desktop)
-         - Ícone, título, descrição em cada passo
-         - Linhas conectoras entre passos
-         
-         CÓMO EDITAR:
-         - Passos: Busque "1. Conexão", "2. Avaliação", etc.
-         - Descrições: Edite os <p> dentro de cada passo
-         - Iconos: Cambia los números por emojis si prefieres
-         - Colores: Usa text-primary, bg-primary, text-accent
-         ======================================== -->
-    <section id="processo" class="py-16 sm:py-20 bg-dark">
+    <!-- ===== PROCESSO ===== -->
+    <section id="processo" class="py-16 sm:py-20" style="background-color:#0a0a0a">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- ENCABEZADO -->
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
                     Seu <span class="text-primary">Caminho para o Sucesso</span>
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Um processo estruturado em 6 passos, desde a conexão inicial até a grande inauguração
-                </p>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Um processo estruturado em 6 passos, desde a conexão inicial até a grande inauguração</p>
+                <div class="w-20 h-1 mt-6 mx-auto" style="background:linear-gradient(90deg,#ffb400,#d32c06)"></div>
             </div>
 
-            <!-- TIMELINE DE 6 PASSOS -->
             <div class="grid md:grid-cols-6 gap-4 md:gap-2">
-                
-                <!-- PASSO 1: Conexão -->
-                <div class="animate-fadeInUp delay-100">
-                    <div class="flex flex-col items-center">
-                        <!-- Número/Ícone do passo -->
-                        <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-2xl mb-4 border-4 border-dark">
-                            1️⃣
-                        </div>
-
-                        <!-- Card do passo -->
-                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center w-full">
-                            <h3 class="font-bold text-lg text-primary mb-2">Conexão</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
-                                Primeiro contato e alinhamento estratégico. Você compartilha seus objetivos e nós apresentamos a oportunidade.
-                            </p>
-                        </div>
-
-                        <!-- Linha conectora (oculta no último passo) -->
-                        <div class="hidden md:block w-1 h-8 bg-gradient-to-b from-primary to-transparent mt-4"></div>
+                <div class="reveal rd1"><div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-xl mb-4 shrink-0">1</div>
+                    <div class="bg-gray-900 border border-gray-800 rounded-lg p-5 text-center w-full">
+                        <h3 class="font-bold text-base text-primary mb-2">Conexão</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Primeiro contato e alinhamento estratégico.</p>
                     </div>
-                </div>
+                </div></div>
 
-                <!-- PASSO 2: Avaliação Estratégica -->
-                <div class="animate-fadeInUp delay-200">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-2xl mb-4 border-4 border-dark">
-                            2️⃣
-                        </div>
-                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center w-full">
-                            <h3 class="font-bold text-lg text-primary mb-2">Avaliação</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
-                                Análisis detallado de tu perfil, experiencia y territorio de interés.
-                            </p>
-                        </div>
-                        <div class="hidden md:block w-1 h-8 bg-gradient-to-b from-primary to-transparent mt-4"></div>
+                <div class="reveal rd2"><div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-xl mb-4 shrink-0">2</div>
+                    <div class="bg-gray-900 border border-gray-800 rounded-lg p-5 text-center w-full">
+                        <h3 class="font-bold text-base text-primary mb-2">Avaliação</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Análise do seu perfil, experiência e território de interesse.</p>
                     </div>
-                </div>
+                </div></div>
 
-                <!-- PASSO 3: Apresentação do Projeto -->
-                <div class="animate-fadeInUp delay-300">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-2xl mb-4 border-4 border-dark">
-                            3️⃣
-                        </div>
-                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center w-full">
-                            <h3 class="font-bold text-lg text-primary mb-2">Apresentação</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
-                                Apresentamos o plano de negócio personalizado com projeções financeiras.
-                            </p>
-                        </div>
-                        <div class="hidden md:block w-1 h-8 bg-gradient-to-b from-primary to-transparent mt-4"></div>
+                <div class="reveal rd3"><div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-xl mb-4 shrink-0">3</div>
+                    <div class="bg-gray-900 border border-gray-800 rounded-lg p-5 text-center w-full">
+                        <h3 class="font-bold text-base text-primary mb-2">Apresentação</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Plano de negócio personalizado com projeções financeiras.</p>
                     </div>
-                </div>
+                </div></div>
 
-                <!-- PASSO 4: Formalização -->
-                <div class="animate-fadeInUp delay-400">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-2xl mb-4 border-4 border-dark">
-                            4️⃣
-                        </div>
-                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center w-full">
-                            <h3 class="font-bold text-lg text-primary mb-2">Formalização</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
-                                Assinatura de contrato, aporte de investimento e documentação legal.
-                            </p>
-                        </div>
-                        <div class="hidden md:block w-1 h-8 bg-gradient-to-b from-primary to-transparent mt-4"></div>
+                <div class="reveal rd4"><div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-xl mb-4 shrink-0">4</div>
+                    <div class="bg-gray-900 border border-gray-800 rounded-lg p-5 text-center w-full">
+                        <h3 class="font-bold text-base text-primary mb-2">Formalização</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Assinatura de contrato e documentação legal.</p>
                     </div>
-                </div>
+                </div></div>
 
-                <!-- PASSO 5: Estruturação -->
-                <div class="animate-fadeInUp delay-[500ms]">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-2xl mb-4 border-4 border-dark">
-                            5️⃣
-                        </div>
-                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-6 text-center w-full">
-                            <h3 class="font-bold text-lg text-primary mb-2">Estruturação</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
-                                Preparação do ponto, treinamento intensivo e configuração tecnológica.
-                            </p>
-                        </div>
-                        <div class="hidden md:block w-1 h-8 bg-gradient-to-b from-primary to-transparent mt-4"></div>
+                <div class="reveal rd5"><div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-primary text-dark rounded-full flex items-center justify-center font-bold text-xl mb-4 shrink-0">5</div>
+                    <div class="bg-gray-900 border border-gray-800 rounded-lg p-5 text-center w-full">
+                        <h3 class="font-bold text-base text-primary mb-2">Estruturação</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Preparação do ponto e treinamento intensivo.</p>
                     </div>
-                </div>
+                </div></div>
 
-                <!-- PASSO 6: Inauguração -->
-                <div class="animate-fadeInUp delay-[600ms]">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-accent text-white rounded-full flex items-center justify-center font-bold text-2xl mb-4 border-4 border-dark">
-                            🎉
-                        </div>
-                        <div class="bg-gradient-to-br from-primary to-accent p-1 rounded-lg w-full">
-                            <div class="bg-gray-900 rounded p-6 text-center">
-                                <h3 class="font-bold text-lg text-primary mb-2">Inauguração</h3>
-                                <p class="text-gray-400 text-sm leading-relaxed">
-                                    Abra para o público! Seu ponto Smart Dog começa a gerar receita.
-                                </p>
-                            </div>
+                <div class="reveal rd6"><div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-accent text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shrink-0">🎉</div>
+                    <div style="background:linear-gradient(135deg,#ffb400,#d32c06);padding:2px;border-radius:8px;width:100%">
+                        <div class="bg-gray-900 rounded p-5 text-center">
+                            <h3 class="font-bold text-base text-primary mb-2">Inauguração</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">Seu ponto Smart Dog abre e começa a gerar receita!</p>
                         </div>
                     </div>
-                </div>
+                </div></div>
             </div>
 
-            <!-- Nota temporal -->
-            <div class="mt-12 bg-gray-900 border border-gray-800 rounded-lg p-6 text-center">
+            <div class="mt-12 bg-gray-900 border border-gray-800 rounded-lg p-6 text-center reveal">
                 <p class="text-gray-300">
-                    ⏱️ <span class="font-semibold">Tempo estimado do processo completo: 60-90 dias</span><br>
+                    ⏱️ <span class="font-semibold">Tempo estimado do processo completo: 60–90 dias</span><br>
                     <span class="text-gray-400 text-sm">Desde a conexão inicial até a inauguração do seu local</span>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         SECCIÓN FORMULARIO DE CONTACTO
-         Captura de leads vía FormSubmit
-         
-         ESTRUCTURA:
-         - Título y descripción
-         - Formulario con campos: nombre, email, teléfono, ciudad, modalidad
-         - Validación HTML5
-         - Acción FormSubmit (reemplaza email)
-         
-         CÓMO EDITAR:
-         - Email: Busca "formsubmit.co/" y reemplaza [TU_CORREO@AQUI.COM]
-         - Campos: Agrega <input> o <select> según necesites
-         - Validación: Usa required, type="email", pattern, etc.
-         - Mensaje de éxito: Edita el texto en div id="form-success"
-         ======================================== -->
-    <section id="contato" class="py-16 sm:py-20 relative overflow-hidden bg-gray-950">
-        <!-- Decoraciones de fondo -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-accent opacity-5 rounded-full blur-3xl"></div>
+    <!-- ===== CONTATO ===== -->
+    <section id="contato" class="py-16 sm:py-20 relative overflow-hidden bg-dark">
+        <div class="absolute top-0 right-0 w-96 h-96 opacity-5 rounded-full blur-3xl bg-accent"></div>
 
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
-            <!-- ENCABEZADO -->
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
                     Pronto para <span class="text-primary">Investir</span>?
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Preencha o formulário e nossa equipe de especialistas entrará em contato com você nas próximas 24 horas
-                </p>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Preencha o formulário e nossa equipe entrará em contato em até 24 horas</p>
+                <div class="w-20 h-1 mt-6 mx-auto" style="background:linear-gradient(90deg,#ffb400,#d32c06)"></div>
             </div>
 
-            <!-- FORMULARIO FormSubmit -->
-            <div class="bg-gray-900 border border-gray-800 rounded-xl p-8 sm:p-12 backdrop-blur-md">
-                
-                <!-- Mensaje de éxito (inicialmente oculto) -->
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-8 sm:p-12 reveal">
                 <div id="form-success" class="form-success">
                     <div class="flex items-center gap-3">
                         <span class="text-2xl">✓</span>
                         <div>
                             <p class="font-bold">Mensagem Enviada com Sucesso!</p>
-                            <p class="text-sm mt-1">Obrigado pelo seu interesse. Entraremos em contato em breve para confirmar sua solicitação.</p>
+                            <p class="text-sm mt-1">Obrigado pelo seu interesse. Entraremos em contato em breve.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Formulario -->
-                <form 
-                    id="contact-form"
-                    action="https://formsubmit.co/[TU_CORREO@AQUI.COM]" 
-                    method="POST"
-                    class="space-y-6"
-                >
-                    <!-- CAMPO: Nombre Completo -->
-                    <div>
-                        <label for="nombre" class="block text-sm font-semibold text-primary mb-2">
-                            Nome Completo *
-                        </label>
-                        <input 
-                            type="text" 
-                            id="nombre" 
-                            name="nombre"
-                            placeholder="Seu nome aqui"
-                            required
-                            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition"
-                        >
-                    </div>
+                <!-- ATENÇÃO: troque o email abaixo pelo email da empresa antes de publicar -->
+                <form id="contact-form"
+                      action="https://formsubmit.co/emmanuelcano82@gmail.com"
+                      method="POST"
+                      class="space-y-6">
 
-                    <!-- CAMPO: Email -->
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-primary mb-2">
-                            Email *
-                        </label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email"
-                            placeholder="tu@email.com"
-                            required
-                            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition"
-                        >
+                        <label for="nombre" class="block text-sm font-semibold text-primary mb-2">Nome Completo *</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Seu nome aqui" required
+                               class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-25 transition">
                     </div>
-
-                    <!-- CAMPO: Telefone -->
                     <div>
-                        <label for="telefono" class="block text-sm font-semibold text-primary mb-2">
-                            Telefone *
-                        </label>
-                        <input 
-                            type="tel" 
-                            id="telefono" 
-                            name="telefono"
-                            placeholder="(11) 9999-9999"
-                            required
-                            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition"
-                        >
+                        <label for="email" class="block text-sm font-semibold text-primary mb-2">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required
+                               class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-25 transition">
                     </div>
-
-                    <!-- CAMPO: Cidade de Interesse -->
                     <div>
-                        <label for="ciudad" class="block text-sm font-semibold text-primary mb-2">
-                            Cidade de Interesse *
-                        </label>
-                        <input 
-                            type="text" 
-                            id="ciudad" 
-                            name="ciudad"
-                            placeholder="Ex: São Paulo, Rio de Janeiro"
-                            required
-                            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition"
-                        >
+                        <label for="telefono" class="block text-sm font-semibold text-primary mb-2">Telefone *</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="(11) 9 9999-9999" required
+                               class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-25 transition">
                     </div>
-
-                    <!-- CAMPO: Modalidade de Preferência (selector) -->
                     <div>
-                        <label for="modalidad" class="block text-sm font-semibold text-primary mb-2">
-                            Modalidade de Preferência *
-                        </label>
-                        <select 
-                            id="modalidad" 
-                            name="modalidad"
-                            required
-                            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition"
-                        >
+                        <label for="ciudad" class="block text-sm font-semibold text-primary mb-2">Cidade de Interesse *</label>
+                        <input type="text" id="ciudad" name="ciudad" placeholder="Ex: São Paulo, Rio de Janeiro" required
+                               class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-25 transition">
+                    </div>
+                    <div>
+                        <label for="modalidad" class="block text-sm font-semibold text-primary mb-2">Modalidade de Preferência *</label>
+                        <select id="modalidad" name="modalidad" required
+                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-25 transition">
                             <option value="">-- Selecione uma modalidade --</option>
                             <option value="NANO">NANO (~$157k, 27 meses ROI)</option>
                             <option value="SMART">SMART (~$229k, 19 meses ROI)</option>
                             <option value="DRIVE">DRIVE (~$291k, 31 meses ROI)</option>
-                            <option value="No definida aún">Ainda não estou certo</option>
+                            <option value="Ainda não definida">Ainda não estou certo</option>
                         </select>
                     </div>
-
-                    <!-- CAMPO: Mensagem (opcional) -->
                     <div>
-                        <label for="mensaje" class="block text-sm font-semibold text-primary mb-2">
-                            Mensagem (Opcional)
-                        </label>
-                        <textarea 
-                            id="mensaje" 
-                            name="mensaje"
-                            placeholder="Conte-nos por que você quer investir na Smart Dog..."
-                            rows="4"
-                            class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition"
-                        ></textarea>
+                        <label for="mensaje" class="block text-sm font-semibold text-primary mb-2">Mensagem (Opcional)</label>
+                        <textarea id="mensaje" name="mensaje" rows="4"
+                                  placeholder="Conte-nos por que você quer investir na Smart Dog..."
+                                  class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-25 transition"></textarea>
                     </div>
-
-                    <!-- Checkbox: Termos -->
                     <div class="flex items-start gap-3">
-                        <input 
-                            type="checkbox" 
-                            id="terminos" 
-                            name="terminos"
-                            required
-                            class="mt-1 w-4 h-4 rounded accent-primary"
-                        >
+                        <input type="checkbox" id="terminos" name="terminos" required
+                               class="mt-1 w-4 h-4 rounded accent-yellow-500">
                         <label for="terminos" class="text-sm text-gray-400">
-                            Aceito que a Smart Dog entre em contato comigo sobre oportunidades de franquia e marketing
+                            Aceito que a Smart Dog entre em contato comigo sobre oportunidades de franquia
                         </label>
                     </div>
 
-                    <!-- Campos ocultos para FormSubmit -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_subject" value="Nova Solicitação de Franquia Smart Dog">
+                    <input type="hidden" name="_next" value="https://emmanuelcano82-png.github.io/smart-dog/#contato">
 
-                    <!-- BOTÓN SUBMIT -->
-                    <button 
-                        type="submit"
-                        class="w-full btn-primary text-white py-3 px-6 rounded-lg font-bold text-lg uppercase tracking-wide"
-                    >
+                    <button type="submit" class="w-full btn-primary text-white py-3 px-6 rounded-lg font-bold text-lg uppercase tracking-wide">
                         Enviar Solicitação
                     </button>
                 </form>
 
-                <!-- Nota de privacidad -->
                 <p class="text-center text-gray-500 text-xs mt-6">
-                    Suas informações estão seguras e nunca serão compartilhadas com terceiros
+                    🔒 Suas informações estão seguras e nunca serão compartilhadas com terceiros
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         FOOTER / PIE DE PÁGINA
-         Información de contacto, links rápidos, redes sociales
-         
-         CÓMO EDITAR:
-         - Información de contacto: Busca email, teléfono, dirección
-         - Links: Agrega más <a> en las listas de navegación
-         - Redes sociales: Agrega más iconos/links en la sección de redes
-         - Copyright: Edita el año y nombre de empresa
-         ======================================== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="bg-black text-gray-400 py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- CONTENIDO PRINCIPAL -->
             <div class="grid md:grid-cols-4 gap-8 mb-12">
-                
-                <!-- COLUMNA 1: Sobre Smart Dog -->
+
                 <div>
-                    <h3 class="text-white font-bold mb-4">Smart Dog</h3>
-                    <p class="text-sm leading-relaxed">
-                        Franquia de hot dogs gourmet com presença no Brasil. Modelo de negócio preparado para lançamento e com grande potencial de crescimento.
-                    </p>
+                    <img src="logo.png" alt="Smart Dog" class="h-12 w-auto object-contain mb-4">
+                    <p class="text-sm leading-relaxed">Franquia de hot dogs gourmet no Brasil. Modelo de negócio preparado para lançamento com grande potencial de crescimento.</p>
                 </div>
 
-                <!-- COLUMNA 2: Enlaces Rápidos -->
                 <div>
                     <h3 class="text-white font-bold mb-4">Navegação</h3>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#hero" class="hover:text-primary transition">Início</a></li>
-                        <li><a href="#diferenciales" class="hover:text-primary transition">Diferenciais</a></li>
-                        <li><a href="#inversiones" class="hover:text-primary transition">Inversiones</a></li>
-                        <li><a href="#processo" class="hover:text-primary transition">Processo</a></li>
-                        <li><a href="#contato" class="hover:text-primary transition">Contato</a></li>
+                        <li><a href="#hero"         class="hover:text-primary transition">Início</a></li>
+                        <li><a href="#diferenciais" class="hover:text-primary transition">Diferenciais</a></li>
+                        <li><a href="#inversiones"  class="hover:text-primary transition">Investimentos</a></li>
+                        <li><a href="#processo"     class="hover:text-primary transition">Processo</a></li>
+                        <li><a href="#contato"      class="hover:text-primary transition">Contato</a></li>
                     </ul>
                 </div>
 
-                <!-- COLUMNA 3: Información Legal -->
                 <div>
                     <h3 class="text-white font-bold mb-4">Legal</h3>
                     <ul class="space-y-2 text-sm">
@@ -1308,157 +889,97 @@
                     </ul>
                 </div>
 
-                <!-- COLUMNA 4: Contacto -->
                 <div>
                     <h3 class="text-white font-bold mb-4">Contato</h3>
-                    <ul class="space-y-2 text-sm">
+                    <ul class="space-y-3 text-sm">
                         <li>
                             <span class="font-semibold text-gray-300">Email:</span><br>
-                            <a href="mailto:contato@smartdog.com.br" class="hover:text-primary transition">
-                                contato@smartdog.com.br
-                            </a>
+                            <a href="mailto:contato@smartdog.com.br" class="hover:text-primary transition">contato@smartdog.com.br</a>
                         </li>
                         <li>
-                            <span class="font-semibold text-gray-300">Telefone:</span><br>
-                            <a href="tel:+551130000000" class="hover:text-primary transition">
-                                +55 (11) 3000-0000
-                            </a>
+                            <span class="font-semibold text-gray-300">WhatsApp:</span><br>
+                            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="hover:text-primary transition">+55 (11) 9 9999-9999</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- DIVIDER -->
             <div class="divider mb-8"></div>
 
-            <!-- BOTTOM FOOTER -->
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-gray-500">
-                    © 2025 Smart Dog. Todos os direitos reservados.
-                </p>
-                
-                <!-- REDES SOCIALES -->
-                <div class="flex gap-6">
-                    <a href="https://www.facebook.com/smartdog" target="_blank" class="text-gray-400 hover:text-primary transition text-xl">
-                        f
-                    </a>
-                    <a href="https://www.instagram.com/smartdog" target="_blank" class="text-gray-400 hover:text-primary transition text-xl">
-                        📷
-                    </a>
-                    <a href="https://www.linkedin.com/company/smartdog" target="_blank" class="text-gray-400 hover:text-primary transition text-xl">
-                        in
-                    </a>
-                    <a href="https://www.whatsapp.com/send?phone=5511999999999" target="_blank" class="text-gray-400 hover:text-primary transition text-xl">
-                        💬
-                    </a>
+                <p class="text-sm text-gray-500">© 2026 Smart Dog. Todos os direitos reservados.</p>
+                <div class="flex gap-3">
+                    <a href="https://www.instagram.com/smartdog" target="_blank" rel="noopener"
+                       class="w-10 h-10 bg-gray-800 hover:bg-primary hover:text-dark text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">IG</a>
+                    <a href="https://www.facebook.com/smartdog" target="_blank" rel="noopener"
+                       class="w-10 h-10 bg-gray-800 hover:bg-primary hover:text-dark text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">FB</a>
+                    <a href="https://www.linkedin.com/company/smartdog" target="_blank" rel="noopener"
+                       class="w-10 h-10 bg-gray-800 hover:bg-primary hover:text-dark text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">LI</a>
+                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener"
+                       class="w-10 h-10 bg-gray-800 hover:bg-green-500 hover:text-white text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">WA</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- ========================================
-         SCRIPT JAVASCRIPT
-         Funcionalidades interactivas
-         
-         FUNCIONES:
-         1. Toggle menú hamburguesa (mobile)
-         2. Animaciones al scroll
-         3. Manejo de formulario con FormSubmit
-         
-         CÓMO EDITAR:
-         - Toggle menú: Busca getElementById('menu-toggle')
-         - Animaciones scroll: Modifica los selectores y delays
-         - Formulario: Agrega validación o lógica adicional
-         ======================================== -->
     <script>
-        // ========================================
-        // 1. TOGGLE MENÚ HAMBURGUESA (mobile)
-        // ========================================
+        // Hamburger toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-
+        const hamburgerIcon = document.getElementById('hamburger-icon');
         menuToggle.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.textContent = isOpen ? '☰' : '✕';
         });
-
-        // Cerrar menú al hacer clic en un link
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                hamburgerIcon.textContent = '☰';
             });
         });
 
-        // ========================================
-        // 2. ANIMACIONES AL SCROLL
-        // ========================================
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Observar elementos con clase de animación
-        document.querySelectorAll('[class*="animate-"]').forEach(el => {
-            observer.observe(el);
-        });
-
-        // ========================================
-        // 3. MANEJO DEL FORMULARIO
-        // ========================================
-        const contactForm = document.getElementById('contact-form');
-        const formSuccess = document.getElementById('form-success');
-
-        contactForm.addEventListener('submit', function(e) {
-            // FormSubmit maneja el envío automáticamente
-            // Pero podemos agregar validación extra aquí
-
-            // Mostrar mensaje de éxito simulado (FormSubmit lo hace después)
-            // setTimeout(() => {
-            //     formSuccess.classList.add('show');
-            //     contactForm.style.display = 'none';
-            // }, 500);
-        });
-
-        // ========================================
-        // 4. SCROLL SUAVE A SECCIONES
-        // ========================================
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // ========================================
-        // 5. CARRUSEL DE GALERÍA
-        // ========================================
+        // Navbar + scroll-top button
+        const navbar = document.querySelector('nav');
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('shadow-lg', window.scrollY > 50);
+            scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+        });
+
+        // Carrusel
         const track = document.getElementById('carousel-track');
         const slides = document.querySelectorAll('.carousel-slide');
         const dotsContainer = document.getElementById('carousel-dots');
         const prevBtn = document.getElementById('carousel-prev');
         const nextBtn = document.getElementById('carousel-next');
-        let current = 0;
-        let autoplayTimer;
+        let current = 0, autoplayTimer;
 
-        // Generar puntos indicadores
         slides.forEach((_, i) => {
             const dot = document.createElement('button');
             dot.className = 'w-3 h-3 rounded-full transition ' + (i === 0 ? 'bg-primary' : 'bg-gray-600');
-            dot.addEventListener('click', () => goTo(i));
+            dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+            dot.addEventListener('click', () => { goTo(i); resetAutoplay(); });
             dotsContainer.appendChild(dot);
         });
 
@@ -1469,30 +990,20 @@
                 d.className = 'w-3 h-3 rounded-full transition ' + (i === current ? 'bg-primary' : 'bg-gray-600');
             });
         }
-
         prevBtn.addEventListener('click', () => { goTo(current - 1); resetAutoplay(); });
         nextBtn.addEventListener('click', () => { goTo(current + 1); resetAutoplay(); });
-
-        function startAutoplay() {
-            autoplayTimer = setInterval(() => goTo(current + 1), 4000);
-        }
-        function resetAutoplay() {
-            clearInterval(autoplayTimer);
-            startAutoplay();
-        }
+        function startAutoplay() { autoplayTimer = setInterval(() => goTo(current + 1), 4500); }
+        function resetAutoplay() { clearInterval(autoplayTimer); startAutoplay(); }
         startAutoplay();
 
-        // ========================================
-        // 7. NAVBAR STICKY CON EFECTO
-        // ========================================
-        const navbar = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg');
-            } else {
-                navbar.classList.remove('shadow-lg');
-            }
-        });
+        // Touch swipe no carrusel
+        let touchStartX = 0;
+        const carouselEl = document.getElementById('carousel-container');
+        carouselEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        carouselEl.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAutoplay(); }
+        }, { passive: true });
     </script>
 </body>
 </html>
