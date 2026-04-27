@@ -15,8 +15,8 @@
     <meta property="og:image" content="https://emmanuelcano82-png.github.io/smart-dog/logo.png">
     <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon-.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="favicon-.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -141,6 +141,50 @@
 
         /* Select dark */
         select option { background:#1f2937; }
+
+        /* Cookie banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 860px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border: 1px solid #ffb400;
+            padding: 20px 24px;
+            border-radius: 12px;
+            z-index: 9999;
+            box-shadow: 0 10px 40px rgba(0,0,0,.6);
+        }
+        #cookie-banner .cookie-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        #cookie-banner p { color: #d1d5db; font-size: .875rem; margin: 0; }
+        #cookie-banner p a { color: #ffb400; text-decoration: underline; }
+        #cookie-banner .cookie-btns { display: flex; gap: 10px; flex-shrink: 0; }
+        #cookie-accept {
+            background: #d32c06; color: white;
+            border: none; border-radius: 8px;
+            padding: 10px 20px; font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer; font-size: .875rem;
+            transition: background .2s;
+        }
+        #cookie-accept:hover { background: #b52505; }
+        #cookie-config {
+            background: transparent; color: #9ca3af;
+            border: 1px solid #374151; border-radius: 8px;
+            padding: 10px 16px; font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer; font-size: .875rem;
+            transition: border-color .2s, color .2s;
+        }
+        #cookie-config:hover { border-color: #ffb400; color: #ffb400; }
     </style>
 </head>
 <body class="bg-dark text-gray-100">
@@ -158,21 +202,21 @@
     <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
 
     <!-- ===== NAVBAR ===== -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 border-b border-gray-800 backdrop-blur-md"
-         style="background-color:rgba(17,17,17,.96)">
+    <nav id="navbar" class="fixed top-0 w-full z-50 border-b border-yellow-500 backdrop-blur-md"
+         style="background-color:#ffb400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
 
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Smart Dog" class="h-10 w-auto object-contain">
+                    <img src="Logo-Smart-Dog-.jpg" alt="Smart Dog" class="h-10 w-auto object-contain">
                 </div>
 
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#hero"          class="text-gray-300 hover:text-primary transition text-sm font-medium">Início</a>
-                    <a href="#diferenciais"  class="text-gray-300 hover:text-primary transition text-sm font-medium">Diferenciais</a>
-                    <a href="#inversiones"   class="text-gray-300 hover:text-primary transition text-sm font-medium">Investimentos</a>
-                    <a href="#processo"      class="text-gray-300 hover:text-primary transition text-sm font-medium">Processo</a>
-                    <a href="#contato"       class="text-gray-300 hover:text-primary transition text-sm font-medium">Contato</a>
+                    <a href="#hero"          class="text-dark hover:text-white transition text-sm font-bold">Início</a>
+                    <a href="#diferenciais"  class="text-dark hover:text-white transition text-sm font-bold">Diferenciais</a>
+                    <a href="#inversiones"   class="text-dark hover:text-white transition text-sm font-bold">Investimentos</a>
+                    <a href="#processo"      class="text-dark hover:text-white transition text-sm font-bold">Processo</a>
+                    <a href="#contato"       class="text-dark hover:text-white transition text-sm font-bold">Contato</a>
                 </div>
 
                 <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
@@ -180,17 +224,17 @@
                     Agendar Consulta
                 </button>
 
-                <button id="menu-toggle" class="md:hidden text-primary p-1" aria-label="Menu">
-                    <span id="hamburger-icon" class="text-2xl">☰</span>
+                <button id="menu-toggle" class="md:hidden text-dark p-1" aria-label="Menu">
+                    <span id="hamburger-icon" class="text-2xl font-bold">☰</span>
                 </button>
             </div>
 
             <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-800 pt-3">
-                <a href="#hero"         class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Início</a>
-                <a href="#diferenciais" class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Diferenciais</a>
-                <a href="#inversiones"  class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Investimentos</a>
-                <a href="#processo"     class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Processo</a>
-                <a href="#contato"      class="block text-gray-300 hover:text-primary transition py-2 px-1 text-sm">Contato</a>
+                <a href="#hero"         class="block text-dark hover:text-white transition py-2 px-1 text-sm font-bold">Início</a>
+                <a href="#diferenciais" class="block text-dark hover:text-white transition py-2 px-1 text-sm font-bold">Diferenciais</a>
+                <a href="#inversiones"  class="block text-dark hover:text-white transition py-2 px-1 text-sm font-bold">Investimentos</a>
+                <a href="#processo"     class="block text-dark hover:text-white transition py-2 px-1 text-sm font-bold">Processo</a>
+                <a href="#contato"      class="block text-dark hover:text-white transition py-2 px-1 text-sm font-bold">Contato</a>
                 <div class="pt-3">
                     <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'});document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('hamburger-icon').textContent='☰';"
                             class="w-full btn-primary text-white py-3 rounded-lg font-semibold">
@@ -243,7 +287,7 @@
                                 class="btn-primary pulse-glow text-white px-8 py-3 rounded-lg font-bold text-lg">
                             Quero Investir
                         </button>
-                        <a href="#processo" class="btn-outline px-8 py-3 rounded-lg font-bold text-lg text-center">
+                        <a href="#processo" class="btn-outline px-8 py-3 rounded-lg font-bold text-lg text-center" style="display:none">
                             Ver Processo
                         </a>
                     </div>
@@ -251,8 +295,8 @@
 
                 <div class="relative hidden md:block hero-right h-d2">
                     <div class="rounded-2xl p-0.5" style="background:linear-gradient(135deg,#ffb400,#d32c06)">
-                        <div class="bg-gray-900 rounded-xl p-10 flex items-center justify-center">
-                            <img src="logo.png" alt="Smart Dog" class="w-full max-w-xs h-auto object-contain">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden">
+                            <img src="logo.png" alt="Smart Dog" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-accent opacity-20 rounded-full blur-2xl"></div>
@@ -279,79 +323,37 @@
 
                     <!-- Slide 1 -->
                     <div class="carousel-slide min-w-full relative">
-                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
-                             style="background:linear-gradient(135deg,#111111 0%,#1e1e1e 55%,#2a1a00 100%)">
-                            <div class="absolute right-0 top-0 bottom-0 flex items-center pr-10 opacity-[0.07] select-none pointer-events-none">
-                                <span style="font-size:22rem;font-weight:900;color:#ffb400;line-height:1">D</span>
-                            </div>
-                            <div class="relative z-10 text-center px-8">
-                                <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Substitua pela sua foto do produto</p>
-                                <p class="text-5xl sm:text-6xl font-bold text-white mb-2">Produto <span class="text-primary">Estrela</span></p>
-                                <p class="text-gray-400 text-lg">Hot dog gourmet com molhos exclusivos</p>
-                            </div>
+                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden">
+                            <img src="Imagenes/ChatGPT Image 27 abr 2026, 11_15_46.png" alt="Produto Smart Dog" class="w-full h-full object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
                                 <p class="text-white font-bold">Nosso Produto Estrela</p>
-                                <p class="text-gray-300 text-sm">Hot dog gourmet com molhos exclusivos</p>
+                                <p class="text-gray-300 text-sm">Hot dog com molhos exclusivos</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Slide 2 -->
                     <div class="carousel-slide min-w-full relative">
-                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
-                             style="background:linear-gradient(135deg,#d32c06 0%,#7a1503 100%)">
-                            <div class="absolute right-0 top-0 bottom-0 flex items-center pr-10 opacity-[0.07] select-none pointer-events-none">
-                                <span style="font-size:22rem;font-weight:900;color:white;line-height:1">O</span>
-                            </div>
-                            <div class="relative z-10 text-center px-8">
-                                <p class="text-red-200 font-semibold text-xs uppercase tracking-widest mb-4">Substitua pela sua foto do ponto de venda</p>
-                                <p class="text-5xl sm:text-6xl font-bold text-white mb-2">Ponto de <span style="color:#ffb400">Venda</span></p>
-                                <p class="text-red-100 text-lg">Estrutura funcional e atrativa</p>
-                            </div>
+                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden">
+                            <img src="Imagenes/5143630289866263617_119.jpg" alt="Ambiente Smart Dog" class="w-full h-full object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
-                                <p class="text-white font-bold">Ponto de Venda</p>
-                                <p class="text-gray-300 text-sm">Estrutura funcional e atrativa</p>
+                                <p class="text-white font-bold">Ambiente do Local</p>
+                                <p class="text-gray-300 text-sm">Espaço moderno, confortável e bem projetado</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Slide 3 -->
                     <div class="carousel-slide min-w-full relative">
-                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
-                             style="background:linear-gradient(135deg,#ffb400 0%,#cc8800 100%)">
-                            <div class="absolute left-0 top-0 bottom-0 flex items-center pl-10 opacity-[0.07] select-none pointer-events-none">
-                                <span style="font-size:22rem;font-weight:900;color:#111111;line-height:1">G</span>
-                            </div>
-                            <div class="relative z-10 text-center px-8">
-                                <p class="text-yellow-900 font-semibold text-xs uppercase tracking-widest mb-4 opacity-70">Substitua pela sua foto de atendimento</p>
-                                <p class="text-5xl sm:text-6xl font-bold text-black mb-2">Experiência do <span style="color:#d32c06">Cliente</span></p>
-                                <p class="text-yellow-900 text-lg">Atendimento rápido e de qualidade</p>
-                            </div>
+                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden">
+                            <img src="Imagenes/5143630289866263612_119.jpg" alt="Tecnologia Smart Dog" class="w-full h-full object-cover">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
-                                <p class="text-white font-bold">Experiência do Cliente</p>
-                                <p class="text-gray-300 text-sm">Atendimento rápido e de qualidade</p>
+                                <p class="text-white font-bold">Tecnologia de Autopedido</p>
+                                <p class="text-gray-300 text-sm">Totem digital para pedidos rápidos e eficientes</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Slide 4 -->
-                    <div class="carousel-slide min-w-full relative">
-                        <div class="w-full h-72 sm:h-96 rounded-2xl relative overflow-hidden flex items-center justify-center"
-                             style="background:linear-gradient(135deg,#1e1e1e 0%,#2d1a00 60%,#d32c06 100%)">
-                            <div class="absolute right-0 top-0 bottom-0 flex items-center pr-10 opacity-[0.07] select-none pointer-events-none">
-                                <span style="font-size:22rem;font-weight:900;color:#d32c06;line-height:1">S</span>
-                            </div>
-                            <div class="relative z-10 text-center px-8">
-                                <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Substitua pela sua foto da equipe</p>
-                                <p class="text-5xl sm:text-6xl font-bold text-white mb-2">Nossa <span class="text-primary">Equipe</span></p>
-                                <p class="text-gray-300 text-lg">Treinamento e padronização em cada unidade</p>
-                            </div>
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 rounded-b-2xl">
-                                <p class="text-white font-bold">Nossa Equipe</p>
-                                <p class="text-gray-300 text-sm">Treinamento e padronização em cada unidade</p>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -400,13 +402,13 @@
     </section>
 
     <!-- ===== SEJA O PRIMEIRO ===== -->
-    <section id="seja-o-primeiro" class="relative py-24 sm:py-32 overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-             style="background-image:url('smartdog3.png')"></div>
+    <section id="seja-o-primeiro" class="relative py-24 sm:py-32 overflow-hidden" style="background-color:#000000">
+        <div class="absolute inset-0 bg-no-repeat bg-center"
+             style="background-image:url('Imagenes/ChatGPT Image 27 abr 2026, 11_00_18.png'); background-size: 65%;"></div>
         <div class="absolute inset-0 bg-black bg-opacity-70"></div>
 
         <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
-            <div class="backdrop-blur-md bg-black bg-opacity-50 border border-primary border-opacity-40
+            <div class="backdrop-blur-md bg-black bg-opacity-25 border border-primary border-opacity-40
                         rounded-2xl px-8 py-12 sm:px-14 sm:py-16 text-center shadow-2xl max-w-2xl w-full reveal">
 
                 <span class="inline-block bg-primary text-dark text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full mb-6">
@@ -838,7 +840,7 @@
                         <input type="checkbox" id="terminos" name="terminos" required
                                class="mt-1 w-4 h-4 rounded accent-yellow-500">
                         <label for="terminos" class="text-sm text-gray-400">
-                            Aceito que a Smart Dog entre em contato comigo sobre oportunidades de franquia
+                            Declaro que li e aceito a <a href="politica-de-privacidade.html" target="_blank" class="text-primary hover:underline">Política de Privacidade</a> e os <a href="termos-e-condicoes.html" target="_blank" class="text-primary hover:underline">Termos e Condições</a>, e autorizo o contato da Smart Dog sobre oportunidades de franquia.
                         </label>
                     </div>
 
@@ -853,7 +855,7 @@
                 </form>
 
                 <p class="text-center text-gray-500 text-xs mt-6">
-                    🔒 Suas informações estão seguras e nunca serão compartilhadas com terceiros
+                    🔒 Seus dados estão protegidos e tratados conforme a LGPD.
                 </p>
             </div>
         </div>
@@ -866,7 +868,7 @@
 
                 <div>
                     <img src="logo.png" alt="Smart Dog" class="h-12 w-auto object-contain mb-4">
-                    <p class="text-sm leading-relaxed">Franquia de hot dogs gourmet no Brasil. Modelo de negócio preparado para lançamento com grande potencial de crescimento.</p>
+                    <p class="text-sm leading-relaxed">Franquia de hot dogs no Brasil. Modelo de negócio preparado para lançamento com grande potencial de crescimento.</p>
                 </div>
 
                 <div>
@@ -883,9 +885,8 @@
                 <div>
                     <h3 class="text-white font-bold mb-4">Legal</h3>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-primary transition">Termos e Condições</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Política de Privacidade</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Contrato de Franquia</a></li>
+                        <li><a href="termos-e-condicoes.html" class="hover:text-primary transition">Termos e Condições</a></li>
+                        <li><a href="politica-de-privacidade.html" class="hover:text-primary transition">Política de Privacidade</a></li>
                     </ul>
                 </div>
 
@@ -894,7 +895,7 @@
                     <ul class="space-y-3 text-sm">
                         <li>
                             <span class="font-semibold text-gray-300">Email:</span><br>
-                            <a href="mailto:contato@smartdog.com.br" class="hover:text-primary transition">contato@smartdog.com.br</a>
+                            <a href="mailto:contato@smartdogfranquias.com.br" class="hover:text-primary transition">contato@smartdogfranquias.com.br</a>
                         </li>
                         <li>
                             <span class="font-semibold text-gray-300">WhatsApp:</span><br>
@@ -909,11 +910,11 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-sm text-gray-500">© 2026 Smart Dog. Todos os direitos reservados.</p>
                 <div class="flex gap-3">
-                    <a href="https://www.instagram.com/smartdog" target="_blank" rel="noopener"
+                    <a href="https://www.instagram.com/smartdog_oficial/" target="_blank" rel="noopener"
                        class="w-10 h-10 bg-gray-800 hover:bg-primary hover:text-dark text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">IG</a>
-                    <a href="https://www.facebook.com/smartdog" target="_blank" rel="noopener"
+                    <a href="https://www.facebook.com/share/1AyFa8T2bq/?mibextid=wwXIfr" target="_blank" rel="noopener"
                        class="w-10 h-10 bg-gray-800 hover:bg-primary hover:text-dark text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">FB</a>
-                    <a href="https://www.linkedin.com/company/smartdog" target="_blank" rel="noopener"
+                    <a href="https://www.linkedin.com/company/smartdog" target="_blank" rel="noopener" style="display:none"
                        class="w-10 h-10 bg-gray-800 hover:bg-primary hover:text-dark text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">LI</a>
                     <a href="https://wa.me/5511999999999" target="_blank" rel="noopener"
                        class="w-10 h-10 bg-gray-800 hover:bg-green-500 hover:text-white text-gray-300 rounded-full flex items-center justify-center transition font-bold text-xs">WA</a>
@@ -1004,6 +1005,32 @@
             const diff = touchStartX - e.changedTouches[0].clientX;
             if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetAutoplay(); }
         }, { passive: true });
+    </script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" style="display:none">
+        <div class="cookie-inner">
+            <p>🍪 Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+            <div class="cookie-btns">
+                <button id="cookie-accept">Aceitar</button>
+                <button id="cookie-config">Configurações</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            if (!localStorage.getItem('smartdogCookies')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+            document.getElementById('cookie-accept').onclick = function() {
+                localStorage.setItem('smartdogCookies', '1');
+                document.getElementById('cookie-banner').style.display = 'none';
+            };
+            document.getElementById('cookie-config').onclick = function() {
+                window.location.href = 'politica-de-privacidade.html';
+            };
+        })();
     </script>
 </body>
 </html>
